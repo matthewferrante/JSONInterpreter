@@ -6,7 +6,7 @@ using System.Text;
 
 namespace PTMS.Core.Crypto {
     public static class AES {
-        private const string Salt = "jjwofjeijwofjqhuwq38vv9";
+        private const string Salt = Constants.ENCRYPTION_SALT;
         private const int SizeOfBuffer = 1024 * 8; // 8k
 
         public static void EncryptFile(string inputPath, string outputPath, string password) {
