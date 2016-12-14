@@ -27,6 +27,10 @@ namespace PTMS.Core.Api {
             return ApiConnector.GetResource(apiEndpoint, patientId + "/Report/" + reportId, AUTH_TYPE, auth);
         }
 
+        public static String GetEncryptionKey(Uri apiEndpoint, string practiceId, string auth) {
+            return ApiConnector.GetResource(apiEndpoint, practiceId + "/EncryptionKey", AUTH_TYPE, auth);
+        }
+
         public static async Task<bool> SendFile(Uri apiEndpoint, string practiceId, string filePath, string auth) {
             var hrm = ApiConnector.PostFile(apiEndpoint, practiceId + "/File", filePath, AUTH_TYPE, auth);
 
