@@ -1,0 +1,15 @@
+E:\Projects\PrimeTime\PTMS.Core\bin\Debug\PTMS.Core.dll.config
+E:\Projects\PrimeTime\PTMS.Core\bin\Debug\PTMS.Core.dll
+E:\Projects\PrimeTime\PTMS.Core\bin\Debug\PTMS.Core.pdb
+E:\Projects\PrimeTime\PTMS.Core\bin\Debug\Newtonsoft.Json.dll
+E:\Projects\PrimeTime\PTMS.Core\bin\Debug\System.Net.Http.Extensions.dll
+E:\Projects\PrimeTime\PTMS.Core\bin\Debug\System.Net.Http.Formatting.dll
+E:\Projects\PrimeTime\PTMS.Core\bin\Debug\System.Net.Http.Primitives.dll
+E:\Projects\PrimeTime\PTMS.Core\bin\Debug\Newtonsoft.Json.xml
+E:\Projects\PrimeTime\PTMS.Core\bin\Debug\System.Net.Http.Extensions.xml
+E:\Projects\PrimeTime\PTMS.Core\bin\Debug\System.Net.Http.Formatting.xml
+E:\Projects\PrimeTime\PTMS.Core\bin\Debug\System.Net.Http.Primitives.xml
+E:\Projects\PrimeTime\PTMS.Core\obj\Debug\PTMS.Core.csproj.App.config
+E:\Projects\PrimeTime\PTMS.Core\obj\Debug\PTMS.Core.csprojResolveAssemblyReference.cache
+E:\Projects\PrimeTime\PTMS.Core\obj\Debug\PTMS.Core.dll
+E:\Projects\PrimeTime\PTMS.Core\obj\Debug\PTMS.Core.pdb

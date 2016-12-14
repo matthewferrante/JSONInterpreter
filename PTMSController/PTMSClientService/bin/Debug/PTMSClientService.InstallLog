@@ -1,0 +1,195 @@
+﻿Installing assembly 'E:\Projects\PrimeTime\PTMSController\PTMSClientService\bin\Debug\PTMSClientService.exe'.
+Affected parameters are:
+   logtoconsole = 
+   logfile = E:\Projects\PrimeTime\PTMSController\PTMSClientService\bin\Debug\PTMSClientService.InstallLog
+   assemblypath = E:\Projects\PrimeTime\PTMSController\PTMSClientService\bin\Debug\PTMSClientService.exe
+Installing service PTMSClientServer...
+Creating EventLog source PTMSClientServer in log Application...
+Rolling back assembly 'E:\Projects\PrimeTime\PTMSController\PTMSClientService\bin\Debug\PTMSClientService.exe'.
+Affected parameters are:
+   logtoconsole = 
+   logfile = E:\Projects\PrimeTime\PTMSController\PTMSClientService\bin\Debug\PTMSClientService.InstallLog
+   assemblypath = E:\Projects\PrimeTime\PTMSController\PTMSClientService\bin\Debug\PTMSClientService.exe
+Restoring event log to previous state for source PTMSClientServer.
+An exception occurred during the Rollback phase of the System.Diagnostics.EventLogInstaller installer.
+System.Security.SecurityException: The source was not found, but some or all event logs could not be searched.  Inaccessible logs: Security.
+An exception occurred during the Rollback phase of the installation. This exception will be ignored and the rollback will continue. However, the machine might not fully revert to its initial state after the rollback is complete.
+Installing assembly 'E:\Projects\PrimeTime\PTMSController\PTMSClientService\bin\Debug\PTMSClientService.exe'.
+Affected parameters are:
+   logtoconsole = 
+   logfile = E:\Projects\PrimeTime\PTMSController\PTMSClientService\bin\Debug\PTMSClientService.InstallLog
+   assemblypath = E:\Projects\PrimeTime\PTMSController\PTMSClientService\bin\Debug\PTMSClientService.exe
+Installing service PTMSClientServer...
+Creating EventLog source PTMSClientServer in log Application...
+Rolling back assembly 'E:\Projects\PrimeTime\PTMSController\PTMSClientService\bin\Debug\PTMSClientService.exe'.
+Affected parameters are:
+   logtoconsole = 
+   logfile = E:\Projects\PrimeTime\PTMSController\PTMSClientService\bin\Debug\PTMSClientService.InstallLog
+   assemblypath = E:\Projects\PrimeTime\PTMSController\PTMSClientService\bin\Debug\PTMSClientService.exe
+Restoring event log to previous state for source PTMSClientServer.
+An exception occurred during the Rollback phase of the System.Diagnostics.EventLogInstaller installer.
+System.Security.SecurityException: The source was not found, but some or all event logs could not be searched.  Inaccessible logs: Security.
+An exception occurred during the Rollback phase of the installation. This exception will be ignored and the rollback will continue. However, the machine might not fully revert to its initial state after the rollback is complete.
+Installing assembly 'E:\Projects\PrimeTime\PTMSController\PTMSClientService\bin\Debug\PTMSClientService.exe'.
+Affected parameters are:
+   logtoconsole = 
+   logfile = E:\Projects\PrimeTime\PTMSController\PTMSClientService\bin\Debug\PTMSClientService.InstallLog
+   assemblypath = E:\Projects\PrimeTime\PTMSController\PTMSClientService\bin\Debug\PTMSClientService.exe
+Installing service PTMSClientServer...
+Creating EventLog source PTMSClientServer in log Application...
+Rolling back assembly 'E:\Projects\PrimeTime\PTMSController\PTMSClientService\bin\Debug\PTMSClientService.exe'.
+Affected parameters are:
+   logtoconsole = 
+   logfile = E:\Projects\PrimeTime\PTMSController\PTMSClientService\bin\Debug\PTMSClientService.InstallLog
+   assemblypath = E:\Projects\PrimeTime\PTMSController\PTMSClientService\bin\Debug\PTMSClientService.exe
+Restoring event log to previous state for source PTMSClientServer.
+An exception occurred during the Rollback phase of the System.Diagnostics.EventLogInstaller installer.
+System.Security.SecurityException: The source was not found, but some or all event logs could not be searched.  Inaccessible logs: Security.
+An exception occurred during the Rollback phase of the installation. This exception will be ignored and the rollback will continue. However, the machine might not fully revert to its initial state after the rollback is complete.
+Installing assembly 'E:\Projects\PrimeTime\PTMSController\PTMSClientService\bin\Debug\PTMSClientService.exe'.
+Affected parameters are:
+   logtoconsole = 
+   logfile = E:\Projects\PrimeTime\PTMSController\PTMSClientService\bin\Debug\PTMSClientService.InstallLog
+   assemblypath = E:\Projects\PrimeTime\PTMSController\PTMSClientService\bin\Debug\PTMSClientService.exe
+Installing service PTMSClientServer...
+Service PTMSClientServer has been successfully installed.
+Creating EventLog source PTMSClientServer in log Application...
+Committing assembly 'E:\Projects\PrimeTime\PTMSController\PTMSClientService\bin\Debug\PTMSClientService.exe'.
+Affected parameters are:
+   logtoconsole = 
+   logfile = E:\Projects\PrimeTime\PTMSController\PTMSClientService\bin\Debug\PTMSClientService.InstallLog
+   assemblypath = E:\Projects\PrimeTime\PTMSController\PTMSClientService\bin\Debug\PTMSClientService.exe
+Uninstalling assembly 'E:\Projects\PrimeTime\PTMSController\PTMSClientService\bin\Debug\PTMSClientService.exe'.
+Affected parameters are:
+   logtoconsole = 
+   logfile = E:\Projects\PrimeTime\PTMSController\PTMSClientService\bin\Debug\PTMSClientService.InstallLog
+   assemblypath = E:\Projects\PrimeTime\PTMSController\PTMSClientService\bin\Debug\PTMSClientService.exe
+Removing EventLog source PTMSClientServer.
+An exception occurred during the uninstallation of the System.Diagnostics.EventLogInstaller installer.
+System.Security.SecurityException: Requested registry access is not allowed.
+An exception occurred while uninstalling. This exception will be ignored and the uninstall will continue. However, the application might not be fully uninstalled after the uninstall is complete.
+Uninstalling assembly 'E:\Projects\PrimeTime\PTMSController\PTMSClientService\bin\Debug\PTMSClientService.exe'.
+Affected parameters are:
+   logtoconsole = 
+   logfile = E:\Projects\PrimeTime\PTMSController\PTMSClientService\bin\Debug\PTMSClientService.InstallLog
+   assemblypath = E:\Projects\PrimeTime\PTMSController\PTMSClientService\bin\Debug\PTMSClientService.exe
+Removing EventLog source PTMSClientServer.
+Service PTMSClientServer is being removed from the system...
+Service PTMSClientServer was successfully removed from the system.
+Attempt to stop service PTMSClientServer.
+Installing assembly 'E:\Projects\PrimeTime\PTMSController\PTMSClientService\bin\Debug\PTMSClientService.exe'.
+Affected parameters are:
+   logtoconsole = 
+   logfile = E:\Projects\PrimeTime\PTMSController\PTMSClientService\bin\Debug\PTMSClientService.InstallLog
+   assemblypath = E:\Projects\PrimeTime\PTMSController\PTMSClientService\bin\Debug\PTMSClientService.exe
+Installing service PTMSClientService...
+Service PTMSClientService has been successfully installed.
+Creating EventLog source PTMSClientService in log Application...
+Committing assembly 'E:\Projects\PrimeTime\PTMSController\PTMSClientService\bin\Debug\PTMSClientService.exe'.
+Affected parameters are:
+   logtoconsole = 
+   logfile = E:\Projects\PrimeTime\PTMSController\PTMSClientService\bin\Debug\PTMSClientService.InstallLog
+   assemblypath = E:\Projects\PrimeTime\PTMSController\PTMSClientService\bin\Debug\PTMSClientService.exe
+Uninstalling assembly 'E:\Projects\PrimeTime\PTMSController\PTMSClientService\bin\Debug\PTMSClientService.exe'.
+Affected parameters are:
+   logtoconsole = 
+   logfile = E:\Projects\PrimeTime\PTMSController\PTMSClientService\bin\Debug\PTMSClientService.InstallLog
+   assemblypath = E:\Projects\PrimeTime\PTMSController\PTMSClientService\bin\Debug\PTMSClientService.exe
+Removing EventLog source PTMSClientService.
+An exception occurred during the uninstallation of the System.Diagnostics.EventLogInstaller installer.
+System.Security.SecurityException: Requested registry access is not allowed.
+An exception occurred while uninstalling. This exception will be ignored and the uninstall will continue. However, the application might not be fully uninstalled after the uninstall is complete.
+Uninstalling assembly 'E:\Projects\PrimeTime\PTMSController\PTMSClientService\bin\Debug\PTMSClientService.exe'.
+Affected parameters are:
+   logtoconsole = 
+   logfile = E:\Projects\PrimeTime\PTMSController\PTMSClientService\bin\Debug\PTMSClientService.InstallLog
+   assemblypath = E:\Projects\PrimeTime\PTMSController\PTMSClientService\bin\Debug\PTMSClientService.exe
+Removing EventLog source PTMSClientService.
+Service PTMSClientService is being removed from the system...
+Service PTMSClientService was successfully removed from the system.
+Attempt to stop service PTMSClientService.
+Installing assembly 'E:\Projects\PrimeTime\PTMSController\PTMSClientService\bin\Debug\PTMSClientService.exe'.
+Affected parameters are:
+   logtoconsole = 
+   logfile = E:\Projects\PrimeTime\PTMSController\PTMSClientService\bin\Debug\PTMSClientService.InstallLog
+   assemblypath = E:\Projects\PrimeTime\PTMSController\PTMSClientService\bin\Debug\PTMSClientService.exe
+Installing service PTMSClientService...
+Service PTMSClientService has been successfully installed.
+Creating EventLog source PTMSClientService in log Application...
+Committing assembly 'E:\Projects\PrimeTime\PTMSController\PTMSClientService\bin\Debug\PTMSClientService.exe'.
+Affected parameters are:
+   logtoconsole = 
+   logfile = E:\Projects\PrimeTime\PTMSController\PTMSClientService\bin\Debug\PTMSClientService.InstallLog
+   assemblypath = E:\Projects\PrimeTime\PTMSController\PTMSClientService\bin\Debug\PTMSClientService.exe
+Uninstalling assembly 'E:\Projects\PrimeTime\PTMSController\PTMSClientService\bin\Debug\PTMSClientService.exe'.
+Affected parameters are:
+   logtoconsole = 
+   logfile = E:\Projects\PrimeTime\PTMSController\PTMSClientService\bin\Debug\PTMSClientService.InstallLog
+   assemblypath = E:\Projects\PrimeTime\PTMSController\PTMSClientService\bin\Debug\PTMSClientService.exe
+Removing EventLog source PTMSClientService.
+Service PTMSClientService is being removed from the system...
+Service PTMSClientService was successfully removed from the system.
+Installing assembly 'E:\Projects\PrimeTime\PTMSController\PTMSClientService\bin\Debug\PTMSClientService.exe'.
+Affected parameters are:
+   logtoconsole = 
+   logfile = E:\Projects\PrimeTime\PTMSController\PTMSClientService\bin\Debug\PTMSClientService.InstallLog
+   assemblypath = E:\Projects\PrimeTime\PTMSController\PTMSClientService\bin\Debug\PTMSClientService.exe
+Installing service PTMSClientService...
+Service PTMSClientService has been successfully installed.
+Creating EventLog source PTMSClientService in log Application...
+Committing assembly 'E:\Projects\PrimeTime\PTMSController\PTMSClientService\bin\Debug\PTMSClientService.exe'.
+Affected parameters are:
+   logtoconsole = 
+   logfile = E:\Projects\PrimeTime\PTMSController\PTMSClientService\bin\Debug\PTMSClientService.InstallLog
+   assemblypath = E:\Projects\PrimeTime\PTMSController\PTMSClientService\bin\Debug\PTMSClientService.exe
+Uninstalling assembly 'E:\Projects\PrimeTime\PTMSController\PTMSClientService\bin\Debug\PTMSClientService.exe'.
+Affected parameters are:
+   logtoconsole = 
+   logfile = E:\Projects\PrimeTime\PTMSController\PTMSClientService\bin\Debug\PTMSClientService.InstallLog
+   assemblypath = E:\Projects\PrimeTime\PTMSController\PTMSClientService\bin\Debug\PTMSClientService.exe
+Removing EventLog source PTMSClientService.
+Service PTMSClientService is being removed from the system...
+Service PTMSClientService was successfully removed from the system.
+Installing assembly 'E:\Projects\PrimeTime\PTMSController\PTMSClientService\bin\Debug\PTMSClientService.exe'.
+Affected parameters are:
+   logtoconsole = 
+   logfile = E:\Projects\PrimeTime\PTMSController\PTMSClientService\bin\Debug\PTMSClientService.InstallLog
+   assemblypath = E:\Projects\PrimeTime\PTMSController\PTMSClientService\bin\Debug\PTMSClientService.exe
+Installing service PTMSClientService...
+Service PTMSClientService has been successfully installed.
+Creating EventLog source PTMSClientService in log Application...
+Committing assembly 'E:\Projects\PrimeTime\PTMSController\PTMSClientService\bin\Debug\PTMSClientService.exe'.
+Affected parameters are:
+   logtoconsole = 
+   logfile = E:\Projects\PrimeTime\PTMSController\PTMSClientService\bin\Debug\PTMSClientService.InstallLog
+   assemblypath = E:\Projects\PrimeTime\PTMSController\PTMSClientService\bin\Debug\PTMSClientService.exe
+Uninstalling assembly 'E:\Projects\PrimeTime\PTMSController\PTMSClientService\bin\Debug\PTMSClientService.exe'.
+Affected parameters are:
+   logtoconsole = 
+   logfile = E:\Projects\PrimeTime\PTMSController\PTMSClientService\bin\Debug\PTMSClientService.InstallLog
+   assemblypath = E:\Projects\PrimeTime\PTMSController\PTMSClientService\bin\Debug\PTMSClientService.exe
+Removing EventLog source PTMSClientService.
+Service PTMSClientService is being removed from the system...
+Service PTMSClientService was successfully removed from the system.
+Attempt to stop service PTMSClientService.
+Installing assembly 'E:\Projects\PrimeTime\PTMSController\PTMSClientService\bin\Debug\PTMSClientService.exe'.
+Affected parameters are:
+   logtoconsole = 
+   logfile = E:\Projects\PrimeTime\PTMSController\PTMSClientService\bin\Debug\PTMSClientService.InstallLog
+   assemblypath = E:\Projects\PrimeTime\PTMSController\PTMSClientService\bin\Debug\PTMSClientService.exe
+Installing service PTMSClientService...
+Service PTMSClientService has been successfully installed.
+Creating EventLog source PTMSClientService in log Application...
+Committing assembly 'E:\Projects\PrimeTime\PTMSController\PTMSClientService\bin\Debug\PTMSClientService.exe'.
+Affected parameters are:
+   logtoconsole = 
+   logfile = E:\Projects\PrimeTime\PTMSController\PTMSClientService\bin\Debug\PTMSClientService.InstallLog
+   assemblypath = E:\Projects\PrimeTime\PTMSController\PTMSClientService\bin\Debug\PTMSClientService.exe
+Uninstalling assembly 'E:\Projects\PrimeTime\PTMSController\PTMSClientService\bin\Debug\PTMSClientService.exe'.
+Affected parameters are:
+   logtoconsole = 
+   logfile = E:\Projects\PrimeTime\PTMSController\PTMSClientService\bin\Debug\PTMSClientService.InstallLog
+   assemblypath = E:\Projects\PrimeTime\PTMSController\PTMSClientService\bin\Debug\PTMSClientService.exe
+Removing EventLog source PTMSClientService.
+Service PTMSClientService is being removed from the system...
+Service PTMSClientService was successfully removed from the system.

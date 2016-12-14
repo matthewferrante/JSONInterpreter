@@ -1,0 +1,14 @@
+E:\Projects\PrimeTime\PTMSController\PTMSClientService\bin\Release\PTMSClientService.exe.config
+E:\Projects\PrimeTime\PTMSController\PTMSClientService\bin\Release\PTMSClientService.exe
+E:\Projects\PrimeTime\PTMSController\PTMSClientService\bin\Release\PTMSClientService.pdb
+E:\Projects\PrimeTime\PTMSController\PTMSClientService\bin\Release\Newtonsoft.Json.dll
+E:\Projects\PrimeTime\PTMSController\PTMSClientService\bin\Release\PTMS.Core.dll
+E:\Projects\PrimeTime\PTMSController\PTMSClientService\bin\Release\System.Net.Http.Formatting.dll
+E:\Projects\PrimeTime\PTMSController\PTMSClientService\bin\Release\PTMS.Core.pdb
+E:\Projects\PrimeTime\PTMSController\PTMSClientService\bin\Release\Newtonsoft.Json.xml
+E:\Projects\PrimeTime\PTMSController\PTMSClientService\bin\Release\System.Net.Http.Formatting.xml
+E:\Projects\PrimeTime\PTMSController\PTMSClientService\obj\Release\PTMSClientService.csprojResolveAssemblyReference.cache
+E:\Projects\PrimeTime\PTMSController\PTMSClientService\obj\Release\PTMSClientService.ProjectInstaller.resources
+E:\Projects\PrimeTime\PTMSController\PTMSClientService\obj\Release\PTMSClientService.csproj.GenerateResource.Cache
+E:\Projects\PrimeTime\PTMSController\PTMSClientService\obj\Release\PTMSClientService.exe
+E:\Projects\PrimeTime\PTMSController\PTMSClientService\obj\Release\PTMSClientService.pdb

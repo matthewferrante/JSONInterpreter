@@ -1,0 +1,805 @@
+{
+  "ReportInfo": {
+    "Version": "1",
+    "CultureName": "en-US",
+    "CreatedDate": "2016-07-26T21:25:14-04:00"
+  },
+  "Patient": {
+    "FirstName": "imh",
+    "MiddleName": "",
+    "LastName": "test",
+    "Gender": "male",
+    "DateOfBirth": {
+      "Year": 1980,
+      "Month": 1,
+      "Day": 1
+    },
+    "Age": {
+      "Years": 36,
+      "Months": 0
+    },
+    "PatientId": "ID-123ABC",
+    "SSN": "",
+    "Employer": {
+      "Name": ""
+    }
+  },
+  "Provider": {
+    "Name": "Dr. NextGen Demo",
+    "Location": "",
+    "ProviderId": "1",
+    "MedicalSpecialties": []
+  },
+  "Encounter": {
+    "EncounterId": "{51E154E9-FC9F-491B-A31F-AC6677A0CF79}",
+    "EncounterStartDate": "2016-07-26T21:23:52-04:00",
+    "EnterpriseId": "100000",
+    "PracticeId": "100",
+    "Questionnaires": [
+      {
+        "Name": "NextGen dizziness"
+      }
+    ],
+    "NextGen": {
+      "Templates": [],
+      "Findings": [
+        {
+          "Category": "Ear, Nose, and Throat",
+          "SortOrder": "180",
+          "DisplayText": "dizziness started suddenly",
+          "DbValues": [
+            {
+              "TableName": "[NGProd].[dbo].[HPI_Dizziness_]",
+              "ColumnName": "onset",
+              "Value": "sudden"
+            }
+          ]
+        },
+        {
+          "Category": "Ear, Nose, and Throat",
+          "SortOrder": "180",
+          "DisplayText": "dizziness occurs daily",
+          "DbValues": [
+            {
+              "TableName": "[NGProd].[dbo].[HPI_Dizziness_]",
+              "ColumnName": "freq",
+              "Value": "daily"
+            }
+          ]
+        },
+        {
+          "Category": "Ear, Nose, and Throat",
+          "SortOrder": "180",
+          "DisplayText": "dizziness incapacitating",
+          "DbValues": [
+            {
+              "TableName": "[NGProd].[dbo].[HPI_Dizziness_]",
+              "ColumnName": "severity_value",
+              "Value": "incapacitating"
+            }
+          ]
+        },
+        {
+          "Category": "Ear, Nose, and Throat",
+          "SortOrder": "180",
+          "DisplayText": "dizziness getting worse",
+          "DbValues": [
+            {
+              "TableName": "[NGProd].[dbo].[HPI_Dizziness_]",
+              "ColumnName": "stat",
+              "Value": "worsening"
+            }
+          ]
+        },
+        {
+          "Category": "Ear, Nose, and Throat",
+          "SortOrder": "180",
+          "DisplayText": "dizziness lasts more than 1 hour",
+          "DbValues": [
+            {
+              "TableName": "[NGProd].[dbo].[HPI_Dizziness_]",
+              "ColumnName": "duration",
+              "Value": "> 1 hour"
+            }
+          ]
+        },
+        {
+          "Category": "Ear, Nose, and Throat",
+          "SortOrder": "180",
+          "DisplayText": "dizziness described as blacking out",
+          "DbValues": [
+            {
+              "TableName": "[NGProd].[dbo].[HPI_Dizziness_]",
+              "ColumnName": "qual_1",
+              "Value": "black-outs"
+            }
+          ]
+        },
+        {
+          "Category": "Ear, Nose, and Throat",
+          "SortOrder": "180",
+          "DisplayText": "dizziness described as floating",
+          "DbValues": [
+            {
+              "TableName": "[NGProd].[dbo].[HPI_Dizziness_]",
+              "ColumnName": "qual_2",
+              "Value": "floating"
+            }
+          ]
+        },
+        {
+          "Category": "Ear, Nose, and Throat",
+          "SortOrder": "180",
+          "DisplayText": "dizziness described as loss of balance",
+          "DbValues": [
+            {
+              "TableName": "[NGProd].[dbo].[HPI_Dizziness_]",
+              "ColumnName": "qual_3",
+              "Value": "imbalance"
+            }
+          ]
+        },
+        {
+          "Category": "Ear, Nose, and Throat",
+          "SortOrder": "180",
+          "DisplayText": "dizziness described as impending doom",
+          "DbValues": [
+            {
+              "TableName": "[NGProd].[dbo].[HPI_Dizziness_]",
+              "ColumnName": "qual_4",
+              "Value": "impending doom"
+            }
+          ]
+        },
+        {
+          "Category": "Ear, Nose, and Throat",
+          "SortOrder": "180",
+          "DisplayText": "dizziness described as lightheadedness",
+          "DbValues": [
+            {
+              "TableName": "[NGProd].[dbo].[HPI_Dizziness_]",
+              "ColumnName": "qual_5",
+              "Value": "light-headed"
+            }
+          ]
+        },
+        {
+          "Category": "Ear, Nose, and Throat",
+          "SortOrder": "180",
+          "DisplayText": "dizziness described as spinning around",
+          "DbValues": [
+            {
+              "TableName": "[NGProd].[dbo].[HPI_Dizziness_]",
+              "ColumnName": "qual_7",
+              "Value": "spinning"
+            }
+          ]
+        },
+        {
+          "Category": "Ear, Nose, and Throat",
+          "SortOrder": "180",
+          "DisplayText": "dizziness described as swimming",
+          "DbValues": [
+            {
+              "TableName": "[NGProd].[dbo].[HPI_Dizziness_]",
+              "ColumnName": "qual_8",
+              "Value": "swimming"
+            }
+          ]
+        },
+        {
+          "Category": "Ear, Nose, and Throat",
+          "SortOrder": "180",
+          "DisplayText": "dizziness described as unstable horizon",
+          "DbValues": [
+            {
+              "TableName": "[NGProd].[dbo].[HPI_Dizziness_]",
+              "ColumnName": "qual_9",
+              "Value": "unstable horizon"
+            }
+          ]
+        },
+        {
+          "Category": "Ear, Nose, and Throat",
+          "SortOrder": "180",
+          "DisplayText": "dizziness described as weird feeling",
+          "DbValues": [
+            {
+              "TableName": "[NGProd].[dbo].[HPI_Dizziness_]",
+              "ColumnName": "qual_dtl",
+              "Value": "weird feeling"
+            }
+          ]
+        },
+        {
+          "Category": "Ear, Nose, and Throat",
+          "SortOrder": "180",
+          "DisplayText": "dizziness precipitated by bending forward",
+          "DbValues": [
+            {
+              "TableName": "[NGProd].[dbo].[HPI_Dizziness_]",
+              "ColumnName": "contxt_1",
+              "Value": "bending"
+            }
+          ]
+        },
+        {
+          "Category": "Ear, Nose, and Throat",
+          "SortOrder": "180",
+          "DisplayText": "dizziness precipitated by coughing",
+          "DbValues": [
+            {
+              "TableName": "[NGProd].[dbo].[HPI_Dizziness_]",
+              "ColumnName": "contxt_2",
+              "Value": "coughing"
+            }
+          ]
+        },
+        {
+          "Category": "Ear, Nose, and Throat",
+          "SortOrder": "180",
+          "DisplayText": "dizziness precipitated by exercising",
+          "DbValues": [
+            {
+              "TableName": "[NGProd].[dbo].[HPI_Dizziness_]",
+              "ColumnName": "contxt_9",
+              "Value": "exercising"
+            }
+          ]
+        },
+        {
+          "Category": "Ear, Nose, and Throat",
+          "SortOrder": "180",
+          "DisplayText": "dizziness precipitated by extending neck",
+          "DbValues": [
+            {
+              "TableName": "[NGProd].[dbo].[HPI_Dizziness_]",
+              "ColumnName": "contxt_3",
+              "Value": "extending neck"
+            }
+          ]
+        },
+        {
+          "Category": "Ear, Nose, and Throat",
+          "SortOrder": "180",
+          "DisplayText": "dizziness precipitated by head trauma",
+          "DbValues": [
+            {
+              "TableName": "[NGProd].[dbo].[HPI_Dizziness_]",
+              "ColumnName": "contxt_10",
+              "Value": "head trauma"
+            }
+          ]
+        },
+        {
+          "Category": "Ear, Nose, and Throat",
+          "SortOrder": "180",
+          "DisplayText": "dizziness precipitated by sitting",
+          "DbValues": [
+            {
+              "TableName": "[NGProd].[dbo].[HPI_Dizziness_]",
+              "ColumnName": "contxt_4",
+              "Value": "sitting"
+            }
+          ]
+        },
+        {
+          "Category": "Ear, Nose, and Throat",
+          "SortOrder": "180",
+          "DisplayText": "dizziness precipitated by spontaneous",
+          "DbValues": [
+            {
+              "TableName": "[NGProd].[dbo].[HPI_Dizziness_]",
+              "ColumnName": "contxt_11",
+              "Value": "spontaneously"
+            }
+          ]
+        },
+        {
+          "Category": "Ear, Nose, and Throat",
+          "SortOrder": "180",
+          "DisplayText": "dizziness precipitated by standing up",
+          "DbValues": [
+            {
+              "TableName": "[NGProd].[dbo].[HPI_Dizziness_]",
+              "ColumnName": "contxt_5",
+              "Value": "standing"
+            }
+          ]
+        },
+        {
+          "Category": "Ear, Nose, and Throat",
+          "SortOrder": "180",
+          "DisplayText": "dizziness precipitated by rolling over",
+          "DbValues": [
+            {
+              "TableName": "[NGProd].[dbo].[HPI_Dizziness_]",
+              "ColumnName": "contxt_6",
+              "Value": "turning in bed"
+            }
+          ]
+        },
+        {
+          "Category": "Ear, Nose, and Throat",
+          "SortOrder": "180",
+          "DisplayText": "dizziness precipitated by sudden head movements",
+          "DbValues": [
+            {
+              "TableName": "[NGProd].[dbo].[HPI_Dizziness_]",
+              "ColumnName": "contxt_7",
+              "Value": "turning neck"
+            }
+          ]
+        },
+        {
+          "Category": "Ear, Nose, and Throat",
+          "SortOrder": "180",
+          "DisplayText": "dizziness precipitated by waking up",
+          "DbValues": [
+            {
+              "TableName": "[NGProd].[dbo].[HPI_Dizziness_]",
+              "ColumnName": "contxt_8",
+              "Value": "waking up"
+            }
+          ]
+        },
+        {
+          "Category": "Ear, Nose, and Throat",
+          "SortOrder": "180",
+          "DisplayText": "dizziness worsened by bending",
+          "DbValues": [
+            {
+              "TableName": "[NGProd].[dbo].[HPI_Dizziness_]",
+              "ColumnName": "agg_2",
+              "Value": "bending"
+            }
+          ]
+        },
+        {
+          "Category": "Ear, Nose, and Throat",
+          "SortOrder": "180",
+          "DisplayText": "dizziness worsened by diet change",
+          "DbValues": [
+            {
+              "TableName": "[NGProd].[dbo].[HPI_Dizziness_]",
+              "ColumnName": "agg_12",
+              "Value": "change in diet"
+            }
+          ]
+        },
+        {
+          "Category": "Ear, Nose, and Throat",
+          "SortOrder": "180",
+          "DisplayText": "dizziness worsened by extension of neck",
+          "DbValues": [
+            {
+              "TableName": "[NGProd].[dbo].[HPI_Dizziness_]",
+              "ColumnName": "agg_3",
+              "Value": "extension of neck"
+            }
+          ]
+        },
+        {
+          "Category": "Ear, Nose, and Throat",
+          "SortOrder": "180",
+          "DisplayText": "dizziness worsened by getting out of bed",
+          "DbValues": [
+            {
+              "TableName": "[NGProd].[dbo].[HPI_Dizziness_]",
+              "ColumnName": "agg_4",
+              "Value": "getting out of bed"
+            }
+          ]
+        },
+        {
+          "Category": "Ear, Nose, and Throat",
+          "SortOrder": "180",
+          "DisplayText": "dizziness worsened by rapid movement",
+          "DbValues": [
+            {
+              "TableName": "[NGProd].[dbo].[HPI_Dizziness_]",
+              "ColumnName": "agg_5",
+              "Value": "rapid movement"
+            }
+          ]
+        },
+        {
+          "Category": "Ear, Nose, and Throat",
+          "SortOrder": "180",
+          "DisplayText": "dizziness worsened by rapidly rising",
+          "DbValues": [
+            {
+              "TableName": "[NGProd].[dbo].[HPI_Dizziness_]",
+              "ColumnName": "agg_6",
+              "Value": "rapid rise"
+            }
+          ]
+        },
+        {
+          "Category": "Ear, Nose, and Throat",
+          "SortOrder": "180",
+          "DisplayText": "dizziness worsened by sleeping",
+          "DbValues": [
+            {
+              "TableName": "[NGProd].[dbo].[HPI_Dizziness_]",
+              "ColumnName": "agg_7",
+              "Value": "sleeping"
+            }
+          ]
+        },
+        {
+          "Category": "Ear, Nose, and Throat",
+          "SortOrder": "180",
+          "DisplayText": "dizziness worsened by stress",
+          "DbValues": [
+            {
+              "TableName": "[NGProd].[dbo].[HPI_Dizziness_]",
+              "ColumnName": "agg_11",
+              "Value": "stress"
+            }
+          ]
+        },
+        {
+          "Category": "Ear, Nose, and Throat",
+          "SortOrder": "180",
+          "DisplayText": "dizziness worsened by turning",
+          "DbValues": [
+            {
+              "TableName": "[NGProd].[dbo].[HPI_Dizziness_]",
+              "ColumnName": "agg_8",
+              "Value": "turning"
+            }
+          ]
+        },
+        {
+          "Category": "Ear, Nose, and Throat",
+          "SortOrder": "180",
+          "DisplayText": "dizziness worsened by turning head to the left",
+          "DbValues": [
+            {
+              "TableName": "[NGProd].[dbo].[HPI_Dizziness_]",
+              "ColumnName": "agg_9",
+              "Value": "turning head to left"
+            }
+          ]
+        },
+        {
+          "Category": "Ear, Nose, and Throat",
+          "SortOrder": "180",
+          "DisplayText": "dizziness worsened by turning head to the right",
+          "DbValues": [
+            {
+              "TableName": "[NGProd].[dbo].[HPI_Dizziness_]",
+              "ColumnName": "agg_10",
+              "Value": "turning head to right"
+            }
+          ]
+        },
+        {
+          "Category": "Ear, Nose, and Throat",
+          "SortOrder": "180",
+          "DisplayText": "dizziness improved by diet changes",
+          "DbValues": [
+            {
+              "TableName": "[NGProd].[dbo].[HPI_Dizziness_]",
+              "ColumnName": "rel_6",
+              "Value": "changed in diet"
+            }
+          ]
+        },
+        {
+          "Category": "Ear, Nose, and Throat",
+          "SortOrder": "180",
+          "DisplayText": "dizziness improved by medications",
+          "DbValues": [
+            {
+              "TableName": "[NGProd].[dbo].[HPI_Dizziness_]",
+              "ColumnName": "rel_2",
+              "Value": "medication"
+            }
+          ]
+        },
+        {
+          "Category": "Ear, Nose, and Throat",
+          "SortOrder": "180",
+          "DisplayText": "dizziness improved by popping ears",
+          "DbValues": [
+            {
+              "TableName": "[NGProd].[dbo].[HPI_Dizziness_]",
+              "ColumnName": "rel_3",
+              "Value": "popping ear"
+            }
+          ]
+        },
+        {
+          "Category": "Ear, Nose, and Throat",
+          "SortOrder": "180",
+          "DisplayText": "dizziness improved by position change",
+          "DbValues": [
+            {
+              "TableName": "[NGProd].[dbo].[HPI_Dizziness_]",
+              "ColumnName": "rel_7",
+              "Value": "position change"
+            }
+          ]
+        },
+        {
+          "Category": "Ear, Nose, and Throat",
+          "SortOrder": "180",
+          "DisplayText": "dizziness improved by resting",
+          "DbValues": [
+            {
+              "TableName": "[NGProd].[dbo].[HPI_Dizziness_]",
+              "ColumnName": "rel_4",
+              "Value": "rest"
+            }
+          ]
+        },
+        {
+          "Category": "Ear, Nose, and Throat",
+          "SortOrder": "180",
+          "DisplayText": "dizziness improved by standing",
+          "DbValues": [
+            {
+              "TableName": "[NGProd].[dbo].[HPI_Dizziness_]",
+              "ColumnName": "rel_5",
+              "Value": "standing"
+            }
+          ]
+        },
+        {
+          "Category": "Ear, Nose, and Throat",
+          "SortOrder": "180",
+          "DisplayText": "dizziness improved by (not entered)",
+          "DbValues": [
+            {
+              "TableName": "[NGProd].[dbo].[HPI_Dizziness_]",
+              "ColumnName": "medicationName",
+              "Value": ""
+            }
+          ]
+        },
+        {
+          "Category": "Ear, Nose, and Throat",
+          "SortOrder": "180",
+          "DisplayText": "dizziness associated with chest pain",
+          "DbValues": [
+            {
+              "TableName": "[NGProd].[dbo].[symptom_master_]",
+              "ColumnName": "chest_pain",
+              "Value": "2"
+            }
+          ]
+        },
+        {
+          "Category": "Ear, Nose, and Throat",
+          "SortOrder": "180",
+          "DisplayText": "dizziness associated with diplopia",
+          "DbValues": [
+            {
+              "TableName": "[NGProd].[dbo].[symptom_master_]",
+              "ColumnName": "diplopia",
+              "Value": "2"
+            }
+          ]
+        },
+        {
+          "Category": "Ear, Nose, and Throat",
+          "SortOrder": "180",
+          "DisplayText": "dizziness associated with otorrhea",
+          "DbValues": [
+            {
+              "TableName": "[NGProd].[dbo].[symptom_master_]",
+              "ColumnName": "ear_drainage",
+              "Value": "2"
+            }
+          ]
+        },
+        {
+          "Category": "Ear, Nose, and Throat",
+          "SortOrder": "180",
+          "DisplayText": "dizziness associated with otalgia",
+          "DbValues": [
+            {
+              "TableName": "[NGProd].[dbo].[symptom_master_]",
+              "ColumnName": "otalgia",
+              "Value": "2"
+            }
+          ]
+        },
+        {
+          "Category": "Ear, Nose, and Throat",
+          "SortOrder": "180",
+          "DisplayText": "dizziness associated with fever",
+          "DbValues": [
+            {
+              "TableName": "[NGProd].[dbo].[symptom_master_]",
+              "ColumnName": "fever",
+              "Value": "2"
+            }
+          ]
+        },
+        {
+          "Category": "Ear, Nose, and Throat",
+          "SortOrder": "180",
+          "DisplayText": "dizziness associated with headache",
+          "DbValues": [
+            {
+              "TableName": "[NGProd].[dbo].[symptom_master2_]",
+              "ColumnName": "headache",
+              "Value": "2"
+            }
+          ]
+        },
+        {
+          "Category": "Ear, Nose, and Throat",
+          "SortOrder": "180",
+          "DisplayText": "dizziness associated with hearing loss",
+          "DbValues": [
+            {
+              "TableName": "[NGProd].[dbo].[symptom_master_]",
+              "ColumnName": "hearing_loss",
+              "Value": "2"
+            }
+          ]
+        },
+        {
+          "Category": "Ear, Nose, and Throat",
+          "SortOrder": "180",
+          "DisplayText": "dizziness associated with incorrdination",
+          "DbValues": [
+            {
+              "TableName": "[NGProd].[dbo].[symptom_master2_]",
+              "ColumnName": "incoordination",
+              "Value": "2"
+            }
+          ]
+        },
+        {
+          "Category": "Ear, Nose, and Throat",
+          "SortOrder": "180",
+          "DisplayText": "dizziness associated with loss of consciousness",
+          "DbValues": [
+            {
+              "TableName": "[NGProd].[dbo].[symptom_master2_]",
+              "ColumnName": "loss_of_consciousness",
+              "Value": "2"
+            }
+          ]
+        },
+        {
+          "Category": "Ear, Nose, and Throat",
+          "SortOrder": "180",
+          "DisplayText": "dizziness associated with nausea",
+          "DbValues": [
+            {
+              "TableName": "[NGProd].[dbo].[symptom_master_]",
+              "ColumnName": "nausea",
+              "Value": "2"
+            }
+          ]
+        },
+        {
+          "Category": "Ear, Nose, and Throat",
+          "SortOrder": "180",
+          "DisplayText": "dizziness associated with neck stiffness",
+          "DbValues": [
+            {
+              "TableName": "[NGProd].[dbo].[symptom_master2_]",
+              "ColumnName": "neck_stiffness",
+              "Value": "2"
+            }
+          ]
+        },
+        {
+          "Category": "Ear, Nose, and Throat",
+          "SortOrder": "180",
+          "DisplayText": "dizziness associated with palpitations",
+          "DbValues": [
+            {
+              "TableName": "[NGProd].[dbo].[symptom_master_]",
+              "ColumnName": "irregular_heartbeat_palp",
+              "Value": "2"
+            }
+          ]
+        },
+        {
+          "Category": "Ear, Nose, and Throat",
+          "SortOrder": "180",
+          "DisplayText": "dizziness associated with paresthesia",
+          "DbValues": [
+            {
+              "TableName": "[NGProd].[dbo].[symptom_master2_]",
+              "ColumnName": "paresthesia",
+              "Value": "2"
+            }
+          ]
+        },
+        {
+          "Category": "Ear, Nose, and Throat",
+          "SortOrder": "180",
+          "DisplayText": "dizziness associated with seizures",
+          "DbValues": [
+            {
+              "TableName": "[NGProd].[dbo].[symptom_master2_]",
+              "ColumnName": "seizures",
+              "Value": "2"
+            }
+          ]
+        },
+        {
+          "Category": "Ear, Nose, and Throat",
+          "SortOrder": "180",
+          "DisplayText": "dizziness associated with dysarthria",
+          "DbValues": [
+            {
+              "TableName": "[NGProd].[dbo].[symptom_master2_]",
+              "ColumnName": "slurred_speech",
+              "Value": "2"
+            }
+          ]
+        },
+        {
+          "Category": "Ear, Nose, and Throat",
+          "SortOrder": "180",
+          "DisplayText": "dizziness associated with tinnitus",
+          "DbValues": [
+            {
+              "TableName": "[NGProd].[dbo].[symptom_master_]",
+              "ColumnName": "tinnitus",
+              "Value": "2"
+            }
+          ]
+        },
+        {
+          "Category": "Ear, Nose, and Throat",
+          "SortOrder": "180",
+          "DisplayText": "dizziness associated with vision loss",
+          "DbValues": [
+            {
+              "TableName": "[NGProd].[dbo].[symptom_master_]",
+              "ColumnName": "vision_loss",
+              "Value": "2"
+            }
+          ]
+        },
+        {
+          "Category": "Ear, Nose, and Throat",
+          "SortOrder": "180",
+          "DisplayText": "dizziness associated with vomiting",
+          "DbValues": [
+            {
+              "TableName": "[NGProd].[dbo].[symptom_master_]",
+              "ColumnName": "vomiting",
+              "Value": "2"
+            }
+          ]
+        },
+        {
+          "Category": "Ear, Nose, and Throat",
+          "SortOrder": "180",
+          "DisplayText": "dizziness associated with weakness",
+          "DbValues": [
+            {
+              "TableName": "[NGProd].[dbo].[symptom_master2_]",
+              "ColumnName": "weakness",
+              "Value": "2"
+            }
+          ]
+        },
+        {
+          "Category": "Patient Issues",
+          "SortOrder": "242",
+          "DisplayText": "additional comments about dizziness are: these are my comments",
+          "DbValues": [
+            {
+              "TableName": "[NGProd].[dbo].[HPI_Dizziness_]",
+              "ColumnName": "add_info",
+              "Value": "these are my comments"
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

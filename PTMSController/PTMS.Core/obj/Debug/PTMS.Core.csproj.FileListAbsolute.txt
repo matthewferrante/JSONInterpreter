@@ -1,0 +1,4 @@
+E:\Projects\PrimeTime\PTMSController\PTMS.Core\bin\Debug\PTMS.Core.dll
+E:\Projects\PrimeTime\PTMSController\PTMS.Core\bin\Debug\PTMS.Core.pdb
+E:\Projects\PrimeTime\PTMSController\PTMS.Core\obj\Debug\PTMS.Core.dll
+E:\Projects\PrimeTime\PTMSController\PTMS.Core\obj\Debug\PTMS.Core.pdb
