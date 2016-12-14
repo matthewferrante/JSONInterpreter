@@ -1,1 +1,0 @@
-9/21/2016 3:43:24 PM [PTMS Dashboard]: Can't find the log file.  The log file will be recreated at E:\Projects\PrimeTime\PTMSController\PTMSController\bin\Debug\.\\log.txt.

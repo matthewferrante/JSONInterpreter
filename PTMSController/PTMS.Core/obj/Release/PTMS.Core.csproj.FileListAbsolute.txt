@@ -1,4 +1,0 @@
-E:\Projects\PrimeTime\PTMSController\PTMS.Core\bin\Release\PTMS.Core.dll
-E:\Projects\PrimeTime\PTMSController\PTMS.Core\bin\Release\PTMS.Core.pdb
-E:\Projects\PrimeTime\PTMSController\PTMS.Core\obj\Release\PTMS.Core.dll
-E:\Projects\PrimeTime\PTMSController\PTMS.Core\obj\Release\PTMS.Core.pdb

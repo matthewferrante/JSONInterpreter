@@ -1,7 +1,0 @@
-9/14/2016 10:46:13 PM [PTMSClientService]: Can't find the log file.  The log file will be recreated at E:\Projects\PrimeTime\PTMSController\PTMSController\bin\Release\.\\log.txt.
-10/31/2016 10:44:35 PM [PTMS Dashboard]: Removing: E:\Projects\PrimeTime\PTMSController\PTMSController\bin\Release\.\Incoming\\{PRID_100}{PID_00000531871}{DT_20160915102601931}.json
-10/31/2016 11:07:32 PM [PTMS Dashboard]: Removing: E:\Projects\PrimeTime\PTMSController\PTMSController\bin\Release\.\Incoming\\{PRID_100}{PID_00000531871}{DT_20160914085417278}.json
-10/31/2016 11:09:34 PM [PTMS Dashboard]: Removing: E:\Projects\PrimeTime\PTMSController\PTMSController\bin\Release\.\Incoming\\{PRID_100}{PID_00000531871}{DT_20160914085417278}.json
-10/31/2016 11:26:04 PM [PTMS Dashboard]: Removing: E:\Projects\PrimeTime\PTMSController\PTMSController\bin\Release\.\Incoming\\{PRID_100}{PID_00000531871}{DT_20160914085417278}.json
-10/31/2016 11:38:35 PM [PTMS Dashboard]: Removing: E:\Projects\PrimeTime\PTMSController\PTMSController\bin\Release\.\Incoming\\{PRID_100}{PID_00000531871}{DT_20160914085417278}.json
-10/31/2016 11:52:42 PM [PTMS Dashboard]: Removing: {PRID_100}{PID_00000531871}{DT_20160915102601931}.json
