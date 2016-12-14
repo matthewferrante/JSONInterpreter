@@ -282,11 +282,11 @@ namespace PTMSController {
 
                         App.Current.Dispatcher.Invoke(delegate { _reviewRows.Add(new ReviewRow() { Id = r.Patient.PatientId, FirstName = r.Patient.FirstName, LastName = r.Patient.LastName, DOB = dob, Gender = r.Patient.Gender, FileName = file }); });                        
                     } catch (Exception ex) {
-                        _logger.Log(String.Format("Error processing incoming file: {0}\n***************************************** EXCEPTION ********************************************\n{1}\n************************************************************************\n", file, ex));
+                        _logger.LogException(String.Format("Processing Incoming: {0}", file), ex.ToString());
                     }
                 }
             } catch (Exception exception) {
-                _logger.Log(String.Format("Exception Processing Incoming: {0}", exception));
+                _logger.LogException("Exception Processing Incoming", exception.ToString());
             }            
         }
         private void ProcessIncoming(object sender, FileSystemEventArgs e) {
