@@ -191,8 +191,10 @@ namespace PTMSController {
                     PracticeConnector.DownloadReports(Utilities.GetCredentials(), practiceId, _logger, Manager.IncomingDirectory);
 
                     MessageBox.Show("Files successfully downloaded.", "Success", MessageBoxButton.OK);
+                    _logger.Log("Successfully downloaded reports. [Manual]");
                 } catch {
                     MessageBox.Show("The host server is currently unavailable.  Please try again in a few minutes.", "Server Error", MessageBoxButton.OK);
+                    _logger.Log("Unable to download reports due to server failure. [Manual]");
                 }
             }
         }
@@ -202,7 +204,7 @@ namespace PTMSController {
         }
 
         /// <summary>
-        /// Initialize the button state
+        /// Initialize the button state for service control
         /// </summary>
         private void InitButton() {
             ServiceController sc = GetService();
@@ -262,9 +264,8 @@ namespace PTMSController {
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void Watcher_Changed(object sender, LogWatcherEventArgs e) {
-            //Invoke the AppendText method if required
             Dispatcher.Invoke(delegate() {
-                RTBLogWindow.AppendText(e.Contents);
+                RTBLogWindow.AppendText(e.Contents); // append new contents to the Log Window
                 RTBLogWindow.ScrollToEnd();
             });
         }
@@ -276,11 +277,10 @@ namespace PTMSController {
                 foreach (string file in Directory.EnumerateFiles(Manager.IncomingDirectory, "*.json")) {
                     try {
                         string contents = File.ReadAllText(file);
-
                         dynamic r = JObject.Parse(contents);
                         var dob = String.Format("{0}/{1}/{2}", r.Patient.DateOfBirth.Month, r.Patient.DateOfBirth.Day, r.Patient.DateOfBirth.Year);
 
-                        App.Current.Dispatcher.Invoke(delegate { _reviewRows.Add(new ReviewRow() { Id = r.Patient.PatientId, FirstName = r.Patient.FirstName, LastName = r.Patient.LastName, DOB = dob, Gender = r.Patient.Gender, FileName = file }); });                        
+                        App.Current.Dispatcher.Invoke(delegate { _reviewRows.Add(new ReviewRow() { Id = r.Patient.PatientId, FirstName = r.Patient.FirstName, LastName = r.Patient.LastName, DOB = dob, Gender = r.Patient.Gender, FileName = file }); });  // Add Row to current display               
                     } catch (Exception ex) {
                         _logger.LogException(String.Format("Processing Incoming: {0}", file), ex.ToString());
                     }
@@ -309,6 +309,7 @@ namespace PTMSController {
                 Manager.DeleteIncomingQuestionnaire(fn);
             } catch (NullReferenceException nre) {
                 MessageBox.Show(String.Format("And Error occurred removing report.  Error: {0}", nre.Message));
+                _logger.LogException("Delete Incoming", nre.ToString());
             }
         }
 
@@ -319,10 +320,11 @@ namespace PTMSController {
             var creds = Utilities.GetCredentials();
             try {
                 var v = DashboardConnector.GetVersion(creds.ApiUri, creds.AuthToken);
-
                 var s = String.Format("Current Version: {0}\nLastest Version: {1}", Assembly.GetExecutingAssembly().GetName().Version, v.Version);
 
-                MessageBox.Show(s, "Update", MessageBoxButton.OK);                
+                MessageBox.Show(s, "Update", MessageBoxButton.OK);
+
+                //TODO: Add update functionality
             } catch (Exception ex) {
                 MessageBox.Show("Unable to check for updates.  Please try again shortly.", "Update", MessageBoxButton.OK);
                 

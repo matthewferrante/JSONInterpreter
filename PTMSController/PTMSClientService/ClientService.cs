@@ -1,16 +1,13 @@
-﻿using PTMS.Core;
-using PTMS.Core.Logging;
+﻿using System.IO;
 using System;
 using System.Configuration;
-using System.Diagnostics;
 using System.ServiceProcess;
 using System.Threading;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 using PTMS.Core.Api;
 using PTMS.Core.Utilities;
-using System.IO;
 using PTMS.Core.Configuration;
+using PTMS.Core;
+using PTMS.Core.Logging;
 
 namespace PTMSClientService {
     public partial class ClientService : ServiceBase {
@@ -30,6 +27,7 @@ namespace PTMSClientService {
             InitializeComponent();
         }
 
+        // Service Startup Routine
         protected override void OnStart(string[] args) {
             _logger.Log("Service Started");
 
@@ -43,6 +41,8 @@ namespace PTMSClientService {
             ScheduleServices();
         }
 
+
+        // Service Stop Routine
         protected override void OnStop() {
             _reportTimer.Dispose();
             _updateTimer.Dispose();
@@ -81,7 +81,7 @@ namespace PTMSClientService {
                         _logger.Log((String.Format("Error Transmitting: {0}", file)));
                     }
                 } catch (Exception ex) {
-                    _logger.Log(String.Format(Constants.TEMPLATE_EXCEPTION,String.Format("Upload Callback: {0}",file), ex));
+                    _logger.LogException(String.Format("Service Upload Callback: {0}",file), ex.ToString());
                 }
             }
 
@@ -102,6 +102,7 @@ namespace PTMSClientService {
         }
 
         private void UpdateTimerCallback(object e) {
+            // INFO: We may not want to update from the service, since that would be a forced update.  
             var creds = Utilities.GetCredentials();
 
             _logger.Log(String.Format("PTMS Client Update Service : {0}", "Ran Service"));

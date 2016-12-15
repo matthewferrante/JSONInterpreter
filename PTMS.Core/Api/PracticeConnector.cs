@@ -41,6 +41,13 @@ namespace PTMS.Core.Api {
             throw new Exception(await hrm.Content.ReadAsStringAsync());
         }
 
+        /// <summary>
+        /// Delete Report from the API
+        /// </summary>
+        /// <param name="apiEndpoint">Location of the API</param>
+        /// <param name="reportId">Report ID to delete</param>
+        /// <param name="auth">The authorization credentials to pass to the API to authenticate and authorize the ability to delete</param>
+        /// <returns></returns>
         public static bool DeleteReport(Uri apiEndpoint, string reportId, string auth) {
             try {
                 ApiConnector.DeleteResource(apiEndpoint, "Report/" + reportId, AUTH_TYPE, auth);
