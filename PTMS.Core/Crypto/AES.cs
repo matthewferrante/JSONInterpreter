@@ -5,6 +5,11 @@ using System.Security.Cryptography;
 using System.Text;
 
 namespace PTMS.Core.Crypto {
+    public enum CryptoDirection {
+        Encrypt,
+        Decrypt
+    }
+
     public static class AES {
         private const string Salt = Constants.ENCRYPTION_SALT;
         private const int SizeOfBuffer = 1024 * 8; // 8k
@@ -50,15 +55,36 @@ namespace PTMS.Core.Crypto {
             }
         }
 
+        public static void CryptoStream(CryptoDirection cd, Stream input, Stream output, string password) {
+            CryptoStream(cd,input,output,EncodePassword(password));
+        }
+
+        private static void CryptoStream(CryptoDirection cd, Stream input, Stream output, Rfc2898DeriveBytes key) {
+            // Make sure block size is set to 128 bits for AES
+            // don't use CFB mode, or make sure return size is same as block size
+            var algorithm = new RijndaelManaged { KeySize = 256, BlockSize = 128 };
+
+            algorithm.Key = key.GetBytes(algorithm.KeySize / 8);
+            algorithm.IV = key.GetBytes(algorithm.BlockSize / 8);
+
+            CryptoStream cryptoStream = cd == CryptoDirection.Decrypt ? new CryptoStream(output, algorithm.CreateDecryptor(), CryptoStreamMode.Write) : new CryptoStream(output, algorithm.CreateEncryptor(), CryptoStreamMode.Write);
+
+            try {
+                CopyStream(input, cryptoStream);
+            } catch (CryptographicException) {
+                throw new InvalidDataException("Incorrect Key");
+            } catch (Exception ex) {
+                throw new Exception(ex.Message);
+            }
+        }
+
+
         private static void CopyStream(Stream input, Stream output) {
-            using (output) {
-                using (input) {
-                    byte[] buffer = new byte[SizeOfBuffer];
-                    int read;
-                    while ((read = input.Read(buffer, 0, buffer.Length)) > 0) {
-                        output.Write(buffer, 0, read);
-                    }
-                }
+            byte[] buffer = new byte[SizeOfBuffer];
+            int read;
+
+            while ((read = input.Read(buffer, 0, buffer.Length)) > 0) {
+                output.Write(buffer, 0, read);
             }
         }
         private static Rfc2898DeriveBytes EncodePassword(string password) {

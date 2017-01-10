@@ -17,6 +17,7 @@ using System.Windows.Threading;
 using Newtonsoft.Json.Linq;
 using PTMS.Core.Api;
 using PTMS.Core.Configuration;
+using PTMS.Core.Crypto;
 using PTMS.Core.Logging;
 using PTMS.Core.Utilities;
 using PTMSController.Models;
@@ -170,7 +171,7 @@ namespace PTMSController {
 
             if (result == MessageBoxResult.Yes) {
                 foreach (var row in _reviewRows) {
-                    var newPath = Manager.ProcessedDirectory + Path.GetFileName(row.FileName);
+                    var newPath = Path.Combine(Manager.ProcessedDirectory, Path.GetFileName(row.FileName));
                     if (File.Exists(newPath)) {
                         File.Delete(newPath);
                     }
@@ -185,10 +186,8 @@ namespace PTMSController {
             if (result == MessageBoxResult.Yes) {
                 _logger.Log("Dashboard Downloading Files");
 
-                var practiceId = Utilities.GetSetting(Constants.SETTING_PRACTICE_ID);
-
                 try {
-                    PracticeConnector.DownloadReports(Utilities.GetCredentials(), practiceId, _logger, Manager.IncomingDirectory);
+                    PracticeConnector.DownloadReports(Utilities.GetCredentials(), _logger, Manager.IncomingDirectory);
 
                     MessageBox.Show("Files successfully downloaded.", "Success", MessageBoxButton.OK);
                     _logger.Log("Successfully downloaded reports. [Manual]");
@@ -318,6 +317,7 @@ namespace PTMSController {
         }
         private void CheckUpdates(object sender, EventArgs e) {
             var creds = Utilities.GetCredentials();
+
             try {
                 var v = DashboardConnector.GetVersion(creds.ApiUri, creds.AuthToken);
                 var s = String.Format("Current Version: {0}\nLastest Version: {1}", Assembly.GetExecutingAssembly().GetName().Version, v.Version);
@@ -330,6 +330,27 @@ namespace PTMSController {
                 
                 _logger.LogException("Check Updates",ex.ToString());
             }
+        }
+
+        private void Test_Click(object sender, EventArgs e) {
+            var creds = Utilities.GetCredentials();
+
+            var password = PracticeConnector.GetEncryptionKey(creds.ApiUri, creds.AuthToken);
+            var input = new FileStream(_reviewRows[0].FileName, FileMode.Open, FileAccess.Read);
+            var output = new MemoryStream();
+
+            using (output) {
+                AES.CryptoStream(CryptoDirection.Encrypt, input, output, password);
+
+                var sr = new StreamReader(output);
+                var myStr = sr.ReadToEnd();
+
+                MessageBox.Show(String.Format("encrypted = {0}", myStr));
+            }
+
+
+
+            
         }
     }
 }

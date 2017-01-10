@@ -34,10 +34,10 @@ namespace PTMSController {
         public ReviewWindow(ReviewRow rr) {
 
             InitializeComponent();
-            _processedDir = FileSystem.BuildAssemblyPath(ConfigurationManager.AppSettings[Constants.SETTING_PROCESSED_DIRECTORY]);
+            _processedDir = FileSystem.BuildAbsolutePath(ConfigurationManager.AppSettings[Constants.SETTING_PROCESSED_DIRECTORY]);
             _fileName = rr.FileName;
 
-            dynamic r = JObject.Parse(File.ReadAllText(rr.FileName));
+            dynamic r = JObject.Parse(File.ReadAllText(rr.FileName));  // This may cause problems.  Full path being read from variable?
 
             tbFirstName.Text = r.Patient.FirstName;
             tbLastName.Text = r.Patient.LastName;
@@ -73,7 +73,7 @@ namespace PTMSController {
 
             r.Encounter.NextGen.Findings = sf;
 
-            File.WriteAllText(_processedDir + Path.GetFileName(_fileName), r.ToString());
+            File.WriteAllText(Path.Combine(_processedDir, Path.GetFileName(_fileName)), r.ToString());
             pcm.DeleteIncomingQuestionnaire(_fileName);
 
             Close();

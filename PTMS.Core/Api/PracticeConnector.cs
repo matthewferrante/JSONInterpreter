@@ -15,8 +15,8 @@ namespace PTMS.Core.Api {
     public static class PracticeConnector {
         private const String AUTH_TYPE = "Basic";
 
-        public static dynamic GetAvailableReports(Uri apiEndPoint, string practiceId, string auth) {
-            var s = ApiConnector.GetResource(apiEndPoint, practiceId, AUTH_TYPE, auth);
+        public static dynamic GetAvailableReports(Uri apiEndPoint, string auth) {
+            var s = ApiConnector.GetResource(apiEndPoint, "Practice", AUTH_TYPE, auth);
 
             return s.ReportInbox.ReportIds;
         }
@@ -27,12 +27,12 @@ namespace PTMS.Core.Api {
             return ApiConnector.GetResource(apiEndpoint, patientId + "/Report/" + reportId, AUTH_TYPE, auth);
         }
 
-        public static String GetEncryptionKey(Uri apiEndpoint, string practiceId, string auth) {
-            return ApiConnector.GetResource(apiEndpoint, practiceId + "/EncryptionKey", AUTH_TYPE, auth);
+        public static String GetEncryptionKey(Uri apiEndpoint, string auth) {
+            return ApiConnector.GetResource(apiEndpoint, "EncryptionKey", AUTH_TYPE, auth).Key;
         }
 
-        public static async Task<bool> SendFile(Uri apiEndpoint, string practiceId, string filePath, string auth) {
-            var hrm = ApiConnector.PostFile(apiEndpoint, practiceId + "/File", filePath, AUTH_TYPE, auth);
+        public static async Task<bool> SendFile(Uri apiEndpoint, string filePath, string auth) {
+            var hrm = ApiConnector.PostFile(apiEndpoint, "File", filePath, AUTH_TYPE, auth);
 
             if (hrm.StatusCode == HttpStatusCode.OK) {
                 return true;
@@ -65,8 +65,8 @@ namespace PTMS.Core.Api {
         /// <param name="practiceId">The practiceId to download reports from</param>
         /// <param name="log">Logger to log the action</param>
         /// <param name="writeDirectory">Where to write the logs once downloaded</param>
-        public static void DownloadReports(ApiCredentials creds, string practiceId, Logger log, string writeDirectory) {
-            var reports = GetAvailableReports(creds.ApiUri, practiceId, creds.AuthToken);
+        public static void DownloadReports(ApiCredentials creds, Logger log, string writeDirectory) {
+            var reports = GetAvailableReports(creds.ApiUri, creds.AuthToken);
 
             foreach (string reportId in reports) {
                 log.Log(String.Format("Found Report: {0}", reportId));

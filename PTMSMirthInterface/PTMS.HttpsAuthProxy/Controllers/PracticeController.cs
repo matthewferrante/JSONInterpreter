@@ -45,12 +45,22 @@ namespace PTMS.HttpsAuthProxy.Controllers {
 
         [IdentityBasicAuthentication]
         [System.Web.Http.Authorize]
-        public IHttpActionResult GetPractice(string practiceId) {
+        public IHttpActionResult GetPractice() {
             var c = RequestContext.Principal.Identity as ClaimsIdentity;
+            var practiceId = c.Claims.First(x => x.Type == ClaimTypes.Sid).Value;
             var auth = Auth.CreateAuth(c);
             var resp = ApiConnector.GetResource(uri, String.Format(getPracticeTemplate, practiceId), "Basic", auth);
 
             return Ok(resp);
+        }
+
+        [IdentityBasicAuthentication]
+        [System.Web.Http.Authorize]
+        public IHttpActionResult GetEncryptionKey() {
+            var c = RequestContext.Principal.Identity as ClaimsIdentity;
+            var key =  new { Key = c.Claims.First(x => x.Type == ClaimTypes.Rsa).Value};
+
+            return Ok(key);
         }
 
         [IdentityBasicAuthentication]
@@ -68,10 +78,12 @@ namespace PTMS.HttpsAuthProxy.Controllers {
         [System.Web.Http.HttpPost]
         [IdentityBasicAuthentication]
         [System.Web.Http.Authorize]
-        public async Task<IHttpActionResult> PostFile(string practiceId) {
+        public async Task<IHttpActionResult> PostFile() {
             if (!Request.Content.IsMimeMultipartContent())
                 throw new HttpResponseException(HttpStatusCode.UnsupportedMediaType);
 
+            var c = RequestContext.Principal.Identity as ClaimsIdentity;
+            var practiceId = c.Claims.First(x => x.Type == ClaimTypes.Sid).Value;
             var provider = new MultipartMemoryStreamProvider();
             
             await Request.Content.ReadAsMultipartAsync(provider);

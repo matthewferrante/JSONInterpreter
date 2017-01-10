@@ -19,7 +19,8 @@ namespace PTMS.HttpsAuthProxy.Filters {
             Claim nameClaim = new Claim(ClaimTypes.Name, userName);
             Claim practiceIdClaim = new Claim(ClaimTypes.Sid, u.PracticeId);
             Claim passCodeClaim = new Claim(ClaimTypes.UserData, u.Passcode);
-            List<Claim> claims = new List<Claim> { nameClaim, practiceIdClaim, passCodeClaim };
+            Claim encryptKeyClaim = new Claim(ClaimTypes.Rsa, u.EncryptionKey);
+            List<Claim> claims = new List<Claim> { nameClaim, practiceIdClaim, passCodeClaim, encryptKeyClaim };
             
 
             // important to set the identity this way, otherwise IsAuthenticated will be false

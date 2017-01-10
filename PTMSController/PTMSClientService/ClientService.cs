@@ -70,7 +70,7 @@ namespace PTMSClientService {
 
             foreach (string file in Directory.EnumerateFiles(_outgoingDir, "*.*")) {
                 try {
-                    var b = PracticeConnector.SendFile(creds.ApiUri, _practiceId, file, creds.AuthToken);
+                    var b = PracticeConnector.SendFile(creds.ApiUri, file, creds.AuthToken);
 
                     if (b.Result) {
                         _logger.Log((String.Format("Successfully Transmitted: {0}", file)));
@@ -93,7 +93,7 @@ namespace PTMSClientService {
             string practiceId = ConfigurationManager.AppSettings[Constants.SETTING_PRACTICE_ID];
 
             try {
-                PracticeConnector.DownloadReports(creds, practiceId, _logger, _incomingDir);
+                PracticeConnector.DownloadReports(creds, _logger, _incomingDir);
             } catch (Exception ex) {
                 _logger.LogException("Report Callback", ex.ToString());
             }

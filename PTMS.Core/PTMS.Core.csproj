@@ -74,6 +74,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utilities\Auth.cs" />
     <Compile Include="Utilities\FileSystem.cs" />
+    <Compile Include="Utilities\Update.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
