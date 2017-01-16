@@ -11,7 +11,7 @@ namespace PTMS.Core.Utilities {
         }
 
         public static string BuildAssemblyPath(string relPath) {
-            return Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) + "\\" + relPath + "\\";
+            return Path.GetDirectoryName(Path.Combine(Assembly.GetExecutingAssembly().Location, relPath));
         }
         public static string BuildAbsolutePath(string absPath) {
             return Path.GetDirectoryName(absPath);
