@@ -26,7 +26,7 @@ namespace PTMS.HttpsAuthProxy {
             config.Routes.MapHttpRoute(name: "PracticeMessageApi", routeTemplate: Constants.API_CURRENT_VERSION + "/File", defaults: new { controller = "Practice", action = "PostFile" }, constraints: new { httpMethod = new HttpMethodConstraint(HttpMethod.Post) });
             config.Routes.MapHttpRoute(name: "RemoveReportApi", routeTemplate: Constants.API_CURRENT_VERSION + "/Report/{reportId}", defaults: new { controller = "Practice", action = "DeleteReport" }, constraints: new { httpMethod = new HttpMethodConstraint(HttpMethod.Delete) });
             config.Routes.MapHttpRoute(name: "DashBoardVersion", routeTemplate: Constants.API_CURRENT_VERSION + "/Dashboard/Version", defaults: new { controller = "Dashboard", action = "GetVersion" }, constraints: new { httpMethod = new HttpMethodConstraint(HttpMethod.Get) });
-            config.Routes.MapHttpRoute(name: "DashBoardUpdate", routeTemplate: Constants.API_CURRENT_VERSION + "/Dashboard/Update", defaults: new { controller = "Dashboard", action = "GetUpdate" }, constraints: new { httpMethod = new HttpMethodConstraint(HttpMethod.Get) });
+            config.Routes.MapHttpRoute(name: "DashBoardUpdate", routeTemplate: Constants.API_CURRENT_VERSION + "/Dashboard/Update/{version}", defaults: new { controller = "Dashboard", action = "GetUpdate" }, constraints: new { httpMethod = new HttpMethodConstraint(HttpMethod.Get) });
 
 
             config.Routes.MapHttpRoute(

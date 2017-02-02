@@ -19,8 +19,9 @@ namespace PTMS.HttpsAuthProxy.Controllers {
 
         [IdentityBasicAuthentication]
         [Authorize]
-        public IHttpActionResult GetUpdate() {
-            var s = JObject.Parse(File.ReadAllText(ConfigurationManager.AppSettings[Constants.SETTING_MANIFEST]));
+        public IHttpActionResult GetUpdate(string version) {
+            var path = Path.Combine(ConfigurationManager.AppSettings[Constants.SETTING_MANIFEST_DIRECTORY], version + ".json");
+            var s = JObject.Parse(File.ReadAllText(path));
 
             return Ok(s);
         }

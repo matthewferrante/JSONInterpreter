@@ -350,8 +350,6 @@ namespace PTMSController {
 
             var m = DashboardConnector.GetUpdateManifest(creds.ApiUri, creds.AuthToken);
 
-            var x = m.Version;
-
             Updater u = new Updater();
 
             u.Check(creds.ApiUri, m);

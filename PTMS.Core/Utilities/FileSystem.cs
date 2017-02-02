@@ -1,4 +1,5 @@
-﻿using System.Configuration;
+﻿using System;
+using System.Configuration;
 using System.IO;
 using System.Reflection;
 using System.Security.Cryptography;
@@ -12,7 +13,7 @@ namespace PTMS.Core.Utilities {
         }
 
         public static string BuildAssemblyPath(string relPath) {
-            return Path.GetDirectoryName(Path.Combine(Assembly.GetExecutingAssembly().Location, relPath));
+            return Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), relPath);
         }
         public static string BuildAbsolutePath(string absPath) {
             return Path.GetDirectoryName(absPath);
@@ -21,9 +22,15 @@ namespace PTMS.Core.Utilities {
         public static string MD5Sum(string path) {
             using (var md5 = MD5.Create()) {
                 using (var stream = File.OpenRead(path)) {
-                    return  System.Text.Encoding.Default.GetString(md5.ComputeHash(stream));
+                    return ByteArrayToString(md5.ComputeHash(stream));
                 }
             }
+        }
+
+        public static string ByteArrayToString(byte[] ba) {
+            string hex = BitConverter.ToString(ba);
+
+            return hex.Replace("-", "");
         }
     }
 }
