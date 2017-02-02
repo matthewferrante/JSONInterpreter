@@ -335,20 +335,22 @@ namespace PTMSController {
         private void Test_Click(object sender, EventArgs e) {
             var creds = Utilities.GetCredentials();
 
-            var password = PracticeConnector.GetEncryptionKey(creds.ApiUri, creds.AuthToken);
-            var input = new FileStream(_reviewRows[0].FileName, FileMode.Open, FileAccess.Read);
-            var output = new MemoryStream();
+            //var password = PracticeConnector.GetEncryptionKey(creds.ApiUri, creds.AuthToken);
+            //var input = new FileStream(_reviewRows[0].FileName, FileMode.Open, FileAccess.Read);
+            //var output = new MemoryStream();
 
-            using (output) {
-                AES.CryptoStream(CryptoDirection.Encrypt, input, output, password);
+            //using (output) {
+            //    AES.CryptoStream(CryptoDirection.Encrypt, input, output, password);
 
-                var sr = new StreamReader(output);
-                var myStr = sr.ReadToEnd();
+            //    var sr = new StreamReader(output);
+            //    var myStr = sr.ReadToEnd();
 
-                MessageBox.Show(String.Format("encrypted = {0}", myStr));
-            }
+            //    MessageBox.Show(String.Format("encrypted = {0}", myStr));
+            //}
 
+            Updater u = new Updater();
 
+            u.Check(new Uri(creds.ApiUri, "Update"));
 
             
         }

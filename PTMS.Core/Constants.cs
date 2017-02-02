@@ -24,6 +24,7 @@ namespace PTMS.Core {
                             SETTING_PROCESSED_DIRECTORY = "ProcessedDirectory",
                             SETTING_DELETED_DIRECTORY = "DeletedDirectory",
                             SETTING_UPLOAD_DIRECTORY = "UploadDirectory",
+                            SETTING_MANIFEST = "ManifestFile",
                             INTERVAL_REPORT = "ReportIntervalMinutes",
                             INTERVAL_UPDATE = "UpdateIntervalMinutes",
                             INTERVAL_UPLOAD = "UploadIntervalMinutes"

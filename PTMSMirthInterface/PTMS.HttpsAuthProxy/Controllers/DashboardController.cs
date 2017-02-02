@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Configuration;
+using System.IO;
 using System.Net.Http;
 using System.Web.Http;
 using PTMS.Core;
@@ -13,6 +14,14 @@ namespace PTMS.HttpsAuthProxy.Controllers {
             dynamic a = new { Version = ConfigurationManager.AppSettings[Constants.SETTING_DASHBOARD_VERSION]};
 
             return Ok(a);
+        }
+
+        [IdentityBasicAuthentication]
+        [Authorize]
+        public IHttpActionResult GetUpdate() {
+            var s = File.ReadAllText(ConfigurationManager.AppSettings[Constants.SETTING_MANIFEST]);
+
+            return Ok(s);
         }
     }
 }
