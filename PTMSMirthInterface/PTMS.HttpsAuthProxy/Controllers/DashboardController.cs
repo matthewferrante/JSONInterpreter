@@ -3,6 +3,7 @@ using System.Configuration;
 using System.IO;
 using System.Net.Http;
 using System.Web.Http;
+using Newtonsoft.Json.Linq;
 using PTMS.Core;
 using PTMS.HttpsAuthProxy.Filters;
 
@@ -19,7 +20,7 @@ namespace PTMS.HttpsAuthProxy.Controllers {
         [IdentityBasicAuthentication]
         [Authorize]
         public IHttpActionResult GetUpdate() {
-            var s = File.ReadAllText(ConfigurationManager.AppSettings[Constants.SETTING_MANIFEST]);
+            var s = JObject.Parse(File.ReadAllText(ConfigurationManager.AppSettings[Constants.SETTING_MANIFEST]));
 
             return Ok(s);
         }

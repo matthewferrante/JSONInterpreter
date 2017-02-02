@@ -18,38 +18,47 @@ namespace PTMS.Core.Utilities {
         private readonly FileInfo _localConfigFile;
 
 
-        public void Check(Uri updateUri) {
+        public void Check(Uri apiUri, dynamic manifest) {
             if (_updating) {
                 // Already updating
                 return;
             }
 
+            var packageUri = new Uri(apiUri, manifest.PackageUrl);
+            var package = Fetch.Get(packageUri.AbsoluteUri);
+            var updateDir = FileSystem.BuildAssemblyPath("Update");
+            var filePath = Path.Combine(updateDir, "latest.zip");
 
-            var http = new Fetch { Retries = 5, RetrySleep = 30000, Timeout = 30000 };
-            http.Load(updateUri.AbsoluteUri);
+            if (package == null) return;
 
-            if (!http.Success) {
-                _remoteConfig = null;
-                return;
+            FileSystem.AssertDirectoryExists(updateDir);
+            File.WriteAllBytes(filePath, package);
+
+            var checksum = manifest.CheckSum;
+
+            string md5sum = FileSystem.MD5Sum(filePath);
+
+            if (!md5sum.Equals(checksum, StringComparison.CurrentCultureIgnoreCase)) {
+                bool bad = true;
             }
 
-            string data = Encoding.UTF8.GetString(http.ResponseData);
-            _remoteConfig = new Manifest(data);
+            //string data = Encoding.UTF8.GetString(http.ResponseData);
+            //_remoteConfig = new Manifest(data);
 
-            if (_remoteConfig == null)
-                return;
+            //if (_remoteConfig == null)
+            //    return;
 
-            if (_localConfig.SecurityToken != _remoteConfig.SecurityToken) {
-                return;
-            }
+            //if (_localConfig.SecurityToken != _remoteConfig.SecurityToken) {
+            //    return;
+            //}
 
-            if (_remoteConfig.Version <= _localConfig.Version) {
-                return;
-            }
+            //if (_remoteConfig.Version <= _localConfig.Version) {
+            //    return;
+            //}
 
-            _updating = true;
-            Update(FileSystem.BuildAssemblyPath("Update"));
-            _updating = false;
+            //_updating = true;
+            //Update(FileSystem.BuildAssemblyPath("Update"));
+            //_updating = false;
         }
 
         private void Update(string WorkPath) {

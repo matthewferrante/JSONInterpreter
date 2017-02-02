@@ -7,5 +7,10 @@ namespace PTMS.Core.Api {
         public static dynamic GetVersion(Uri apiEndPoint, string auth) {
             return ApiConnector.GetResource(apiEndPoint, "Dashboard/Version", AUTH_TYPE, auth);
         }
+
+        public static dynamic GetUpdateManifest(Uri apiEndPoint, string auth) {
+            return ApiConnector.GetResource(apiEndPoint, "Dashboard/Update", AUTH_TYPE, auth);
+        }
+
     }
 }

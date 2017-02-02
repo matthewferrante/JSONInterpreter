@@ -348,11 +348,13 @@ namespace PTMSController {
             //    MessageBox.Show(String.Format("encrypted = {0}", myStr));
             //}
 
+            var m = DashboardConnector.GetUpdateManifest(creds.ApiUri, creds.AuthToken);
+
+            var x = m.Version;
+
             Updater u = new Updater();
 
-            u.Check(new Uri(creds.ApiUri, "Update"));
-
-            
+            u.Check(creds.ApiUri, m);
         }
     }
 }
