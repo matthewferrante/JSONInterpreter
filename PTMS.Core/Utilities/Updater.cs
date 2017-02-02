@@ -18,7 +18,7 @@ namespace PTMS.Core.Utilities {
         private readonly FileInfo _localConfigFile;
 
 
-        private void Check(object state, Uri updateUri) {
+        public void Check(Uri updateUri) {
             if (_updating) {
                 // Already updating
                 return;
@@ -60,7 +60,7 @@ namespace PTMS.Core.Utilities {
                 }
             }
 
-            Directory.CreateDirectory(WorkPath);
+            FileSystem.AssertDirectoryExists(WorkPath);
 
             // Download files in manifest.
             foreach (string update in _remoteConfig.Payloads) {
@@ -73,7 +73,7 @@ namespace PTMS.Core.Utilities {
 
                 var info = new FileInfo(Path.Combine(WorkPath, update));
 
-                Directory.CreateDirectory(info.DirectoryName);
+                //Directory.CreateDirectory(info.DirectoryName);
                 File.WriteAllBytes(Path.Combine(WorkPath, update), file);
 
                 // Unzip
@@ -81,10 +81,7 @@ namespace PTMS.Core.Utilities {
                     try {
                         var zipfile = Path.Combine(WorkPath, update);
 
-                        using (var zip = ZipFile.OpenRead(zipfile)) {
-                            zip.ExtractToDirectory(WorkPath);
-                        }
-
+                        ZipFile.ExtractToDirectory(zipfile, WorkPath);
                         File.Delete(zipfile);
                     } catch (Exception ex) {
                         return;
@@ -94,15 +91,15 @@ namespace PTMS.Core.Utilities {
 
             // Change the currently running executable so it can be overwritten.
             Process thisprocess = Process.GetCurrentProcess();
-            string me = thisprocess.MainModule.FileName;
-            string bak = me + ".bak";
+            string cp = thisprocess.MainModule.FileName;
+            string bak = cp + ".bak";
 
             if (File.Exists(bak)) {
                 File.Delete(bak);
             }
                 
-            File.Move(me, bak);
-            File.Copy(bak, me);
+            File.Move(cp, bak);
+            File.Copy(bak, cp);
 
             // Write out the new manifest.
             _remoteConfig.Write(Path.Combine(WorkPath, _localConfigFile.Name));
@@ -121,7 +118,7 @@ namespace PTMS.Core.Utilities {
             Directory.Delete(WorkPath, true);
 
             // Restart.
-            var spawn = Process.Start(me);
+            var spawn = Process.Start(cp);
 
             thisprocess.CloseMainWindow();
             thisprocess.Close();

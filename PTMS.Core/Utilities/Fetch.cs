@@ -78,43 +78,42 @@ namespace PTMS.Core.Utilities {
                 try {
                     var req = HttpWebRequest.Create(url) as HttpWebRequest;
                     req.AllowAutoRedirect = true;
-                    ServicePointManager.ServerCertificateValidationCallback = (a, b, c, d) => true;
-                    if (Credential != null)
-                        req.Credentials = Credential;
+                    // ServicePointManager.ServerCertificateValidationCallback = (a, b, c, d) => true; // Turn off certificate checking
+                    
+                    if (Credential != null) {
+                        req.Credentials = Credential;                        
+                    }
                     req.Headers = Headers;
                     req.Timeout = Timeout;
 
                     Response = req.GetResponse() as HttpWebResponse;
+
                     switch (Response.StatusCode) {
                         case HttpStatusCode.Found:
-                            // This is a redirect to an error page, so ignore.
-                            Console.WriteLine("Found (302), ignoring ");
+                            // This is a redirect, just ignore.
                             break;
-
                         case HttpStatusCode.OK:
-                            // This is a valid page.
-                            using (var sr = Response.GetResponseStream())
-                            using (var ms = new MemoryStream()) {
-                                for (int b; (b = sr.ReadByte()) != -1; )
-                                    ms.WriteByte((byte)b);
-                                ResponseData = ms.ToArray();
+                            using (var sr = Response.GetResponseStream()) {
+                                using (var ms = new MemoryStream()) {
+                                    for (int b; (b = sr.ReadByte()) != -1;) {
+                                        ms.WriteByte((byte)b);
+                                    }
+                                        
+                                    ResponseData = ms.ToArray();
+                                }
                             }
-                            break;
-
-                        default:
-                            // This is unexpected.
-                            Console.WriteLine(Response.StatusCode);
                             break;
                     }
                     Success = true;
                     break;
                 } catch (WebException ex) {
-                    Console.WriteLine(":Exception " + ex.Message);
                     Response = ex.Response as HttpWebResponse;
+
                     if (ex.Status == WebExceptionStatus.Timeout) {
                         Thread.Sleep(RetrySleep);
                         continue;
                     }
+
                     break;
                 }
             }
@@ -129,8 +128,10 @@ namespace PTMS.Core.Utilities {
 
         public string GetString() {
             var encoder = string.IsNullOrEmpty(Response.ContentEncoding) ? Encoding.UTF8 : Encoding.GetEncoding(Response.ContentEncoding);
+            
             if (ResponseData == null)
                 return string.Empty;
+            
             return encoder.GetString(ResponseData);
         }
         #endregion

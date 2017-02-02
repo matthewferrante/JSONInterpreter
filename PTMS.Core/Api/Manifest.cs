@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace PTMS.Core.Api {
-    internal class Manifest {
+    public class Manifest {
         #region Fields
         private dynamic _config;
         #endregion
