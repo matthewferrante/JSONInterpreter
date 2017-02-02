@@ -350,9 +350,9 @@ namespace PTMSController {
 
             var m = DashboardConnector.GetUpdateManifest(creds.ApiUri, creds.AuthToken);
 
-            Updater u = new Updater();
+            //Updater u = new Updater();
 
-            u.Check(creds.ApiUri, m);
+            //u.Check(creds.ApiUri, m);
         }
     }
 }

@@ -13,8 +13,6 @@ namespace PTMS.Core.Utilities {
     public class Updater {
 
         private volatile bool _updating;
-        private Manifest _remoteConfig;
-        private readonly FileInfo _localConfigFile;
         private string _currentVersion;
 
         public Updater(string currentVersion) {
@@ -95,7 +93,7 @@ namespace PTMS.Core.Utilities {
             //Directory.Delete(WorkPath, true);
 
             //// Restart.
-            var spawn = Process.Start(cp);
+            //var spawn = Process.Start(cp);
 
             //thisprocess.CloseMainWindow();
             //thisprocess.Close();
