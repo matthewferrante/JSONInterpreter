@@ -63,41 +63,20 @@ namespace PTMS.Core.Utilities {
             ZipFile.ExtractToDirectory(packagePath, updateDir);
             File.Delete(packagePath);
 
-            // Change the currently running executable so it can be overwritten.
-            //Process thisprocess = Process.GetCurrentProcess();
-            //string cp = thisprocess.MainModule.FileName;
-            //string bak = cp + ".bak";
+            var setupPackage = Path.Combine(updateDir, "setup.exe");
 
-            //File.Move(cp, bak);
-            //File.Copy(bak, cp);
-
-            //// Copy everything.
-            var assemblyPath = FileSystem.BuildAssemblyPath("");
-
-            foreach (string file in Directory.EnumerateFiles(updateDir, "*.*")) {
-                var existingPath = Path.Combine(assemblyPath, Path.GetFileName(file));
-
-                if (File.Exists(existingPath)) {
-                    var backup = existingPath + ".bak";
-
-                    if (File.Exists(backup)) {
-                        File.Delete(backup);
-                    }
-
-                    File.Copy(existingPath, backup);
-                    File.Move(file, existingPath);
-                }
+            if (!File.Exists(setupPackage)) {
+                throw new Exception("Package does not contain an appropriate MSI.");
             }
 
-            //// Clean up.
-            //Directory.Delete(WorkPath, true);
+            Process thisprocess = Process.GetCurrentProcess();
+            Process.Start(setupPackage);
 
-            //// Restart.
-            //var spawn = Process.Start(cp);
+            Directory.Delete(updateDir, true);
 
-            //thisprocess.CloseMainWindow();
-            //thisprocess.Close();
-            //thisprocess.Dispose();
+            thisprocess.CloseMainWindow();
+            thisprocess.Close();
+            thisprocess.Dispose();
         }
     }
 }

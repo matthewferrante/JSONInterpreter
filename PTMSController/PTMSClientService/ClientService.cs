@@ -51,7 +51,7 @@ namespace PTMSClientService {
 
         public void ScheduleServices() {
             ScheduleReportTimer();
-            ScheduleUpdateTimer();
+            //ScheduleUpdateTimer();
             ScheduleDataUploader();
         }
 
@@ -90,7 +90,6 @@ namespace PTMSClientService {
 
         private void ReportTimerCallback(object e) {
             var creds = Utilities.GetCredentials();
-            string practiceId = ConfigurationManager.AppSettings[Constants.SETTING_PRACTICE_ID];
 
             try {
                 PracticeConnector.DownloadReports(creds, _logger, _incomingDir);
