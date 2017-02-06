@@ -150,6 +150,11 @@ namespace PTMSController {
         /// <param name="e"></param>
         private void BtnServiceControl_Click(object sender, RoutedEventArgs e) {
             var sc = GetService();
+
+            if (sc == null) {
+                _logger.LogException("SERVICE CONTROL","Unable to get Service.");
+            }
+
             BtnServiceControl.IsEnabled = false;
 
             switch (BtnServiceControl.Content.ToString()) {
@@ -348,7 +353,8 @@ namespace PTMSController {
             //    MessageBox.Show(String.Format("encrypted = {0}", myStr));
             //}
 
-            var m = DashboardConnector.GetUpdateManifest(creds.ApiUri, creds.AuthToken);
+            var v = DashboardConnector.GetVersion(creds.ApiUri, creds.AuthToken);
+            var m = DashboardConnector.GetUpdateManifest(creds.ApiUri, v.Version, creds.AuthToken);
 
             Updater u = new Updater(m.Version);
 

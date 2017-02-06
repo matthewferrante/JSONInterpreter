@@ -72,7 +72,7 @@ namespace PTMS.Core.Utilities {
             Process thisprocess = Process.GetCurrentProcess();
             Process.Start(setupPackage);
 
-            Directory.Delete(updateDir, true);
+            //Directory.Delete(updateDir, true);
 
             thisprocess.CloseMainWindow();
             thisprocess.Close();

@@ -63,7 +63,7 @@
     <SignManifests>false</SignManifests>
   </PropertyGroup>
   <PropertyGroup>
-    <SignAssembly>true</SignAssembly>
+    <SignAssembly>false</SignAssembly>
   </PropertyGroup>
   <PropertyGroup>
     <ManifestCertificateThumbprint>309021F873714826380BA4E56750F28D8E7D41CE</ManifestCertificateThumbprint>
@@ -161,6 +161,7 @@
     </None>
     <AppDesigner Include="Properties\" />
     <None Include="PTMSController_TemporaryKey.pfx" />
+    <None Include="testcert.pfx" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config">

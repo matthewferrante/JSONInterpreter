@@ -66,6 +66,7 @@ namespace PTMS.Core.Api {
         /// <param name="log">Logger to log the action</param>
         /// <param name="writeDirectory">Where to write the logs once downloaded</param>
         public static void DownloadReports(ApiCredentials creds, Logger log, string writeDirectory) {
+            log.Log("**** Downloading Reports ******");
             var reports = GetAvailableReports(creds.ApiUri, creds.AuthToken);
 
             foreach (string reportId in reports) {
@@ -88,8 +89,8 @@ namespace PTMS.Core.Api {
             }
         }
 
-        private static string GetPractice(Uri apiEndPoint, string practiceId, string auth) {
-            return ApiConnector.GetResource(apiEndPoint, practiceId, AUTH_TYPE, auth);
+        private static string GetPractice(Uri apiEndPoint, string auth) {
+            return ApiConnector.GetResource(apiEndPoint, "Practice", AUTH_TYPE, auth);
         }
         private static string ExtractPatientId(string reportId) {
             var idx = reportId.IndexOf("{PID_", StringComparison.Ordinal)+5;

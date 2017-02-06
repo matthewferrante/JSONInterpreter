@@ -45,7 +45,8 @@ namespace PTMSClientService {
         // Service Stop Routine
         protected override void OnStop() {
             _reportTimer.Dispose();
-            _updateTimer.Dispose();
+            _uploadTimer.Dispose();
+            //_updateTimer.Dispose();
             _logger.Log("Service Stopped");
         }
 
