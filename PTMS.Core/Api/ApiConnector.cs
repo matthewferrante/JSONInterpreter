@@ -11,6 +11,7 @@ using System.Text;
 namespace PTMS.Core.Api {
     public class ApiConnector {
         public static String API_ENDPOINT = ConfigurationManager.AppSettings[Constants.SETTING_API_URL];
+        
         private const String JSON_MEDIA_TYPE = "application/json";
 
         public static dynamic GetResource(Uri apiUri, string endPoint, string authType, string authString) {
