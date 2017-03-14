@@ -11,11 +11,18 @@ namespace PTMS.GenerateKey {
             //testuser@test.com:testingPassword123!
             //AM/9g+c39HnUT8Ioe3D4Y0uOLzDQdmWBb3raXpFHm8VYk/ZNt3rW+qXLFaiV+1WoWw==
 
-            var hash = HashPassword("");
+            var hash = HashPassword("K66ZD5z0ocbL7xqhpvTx");
 
             Console.WriteLine("Hash => {0}", hash);
 
             Console.WriteLine("Equal => {0}", VerifyHashedPassword("AG04bMxM/MegTjvu+1Al8Dqa6nCclUv4gWJe68Jq/2T6EHdcC1FnZrUYjRCuymTDgQ==", ""));
+
+
+            var s = GenerateKey();
+            var d = GenerateKey();
+
+            Console.WriteLine("Key 1 => {0}", s);
+            Console.WriteLine("Key 2 => {0}", d);
         }
 
         // Function to Generate a 64 bits Key.

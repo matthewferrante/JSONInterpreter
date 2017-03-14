@@ -340,25 +340,25 @@ namespace PTMSController {
         private void Test_Click(object sender, EventArgs e) {
             var creds = Utilities.GetCredentials();
 
-            //var password = PracticeConnector.GetEncryptionKey(creds.ApiUri, creds.AuthToken);
-            //var input = new FileStream(_reviewRows[0].FileName, FileMode.Open, FileAccess.Read);
-            //var output = new MemoryStream();
+            var password = PracticeConnector.GetEncryptionKey(creds.ApiUri, creds.AuthToken);
+            var input = new FileStream(_reviewRows[0].FileName, FileMode.Open, FileAccess.Read);
+            var output = new MemoryStream();
 
-            //using (output) {
-            //    AES.CryptoStream(CryptoDirection.Encrypt, input, output, password);
+            using (output) {
+                AES.CryptStream(CryptoDirection.Encrypt, input, output, password);
 
-            //    var sr = new StreamReader(output);
-            //    var myStr = sr.ReadToEnd();
+                var sr = new StreamReader(output);
+                var myStr = sr.ReadToEnd();
 
-            //    MessageBox.Show(String.Format("encrypted = {0}", myStr));
-            //}
+                MessageBox.Show(String.Format("encrypted = {0}", myStr));
+            }
 
-            var v = DashboardConnector.GetVersion(creds.ApiUri, creds.AuthToken);
-            var m = DashboardConnector.GetUpdateManifest(creds.ApiUri, v.Version, creds.AuthToken);
+            //var v = DashboardConnector.GetVersion(creds.ApiUri, creds.AuthToken);
+            //var m = DashboardConnector.GetUpdateManifest(creds.ApiUri, v.Version, creds.AuthToken);
 
-            Updater u = new Updater(m.Version);
+            //Updater u = new Updater(m.Version);
 
-            u.Check(creds.ApiUri, m);
+            //u.Check(creds.ApiUri, m);
         }
     }
 }

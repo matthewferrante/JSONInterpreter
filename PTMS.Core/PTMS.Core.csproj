@@ -77,7 +77,7 @@
     <Compile Include="Api\PracticeConnector.cs" />
     <Compile Include="Configuration\Utilities.cs" />
     <Compile Include="Constants.cs" />
-    <Compile Include="Crypto\AES.cs" />
+    <Compile Include="Crypto\StringCipher.cs" />
     <Compile Include="Logging\Log.cs" />
     <Compile Include="Logging\LogWatcher.cs">
       <SubType>Component</SubType>
