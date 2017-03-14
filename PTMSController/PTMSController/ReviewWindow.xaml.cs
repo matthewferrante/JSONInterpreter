@@ -18,6 +18,9 @@ using PTMSController.Models;
 using System.IO;
 using Newtonsoft.Json;
 using PTMS.Core;
+using PTMS.Core.Api;
+using PTMS.Core.Configuration;
+using PTMS.Core.Crypto;
 using PTMS.Core.Utilities;
 
 namespace PTMSController {
@@ -37,7 +40,10 @@ namespace PTMSController {
             _processedDir = FileSystem.BuildAbsolutePath(ConfigurationManager.AppSettings[Constants.SETTING_PROCESSED_DIRECTORY]);
             _fileName = rr.FileName;
 
-            dynamic r = JObject.Parse(File.ReadAllText(rr.FileName));  // This may cause problems.  Full path being read from variable?
+            var creds = Utilities.GetCredentials();
+            var key = PracticeConnector.GetEncryptionKey(creds.ApiUri, creds.AuthToken);
+
+            dynamic r = JObject.Parse(StringCipher.Decrypt(File.ReadAllText(rr.FileName), key));  // This may cause problems.  Full path being read from variable?
 
             tbFirstName.Text = r.Patient.FirstName;
             tbLastName.Text = r.Patient.LastName;

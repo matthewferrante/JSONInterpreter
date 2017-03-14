@@ -96,7 +96,9 @@ namespace PTMSClientService {
             var creds = Utilities.GetCredentials();
 
             try {
-                PracticeConnector.DownloadReports(creds, _logger, _incomingDir);
+                var key = PracticeConnector.GetEncryptionKey(creds.ApiUri, creds.AuthToken);
+
+                PracticeConnector.DownloadReports(creds, _logger, _incomingDir, key);
             } catch (Exception ex) {
                 _logger.LogException("Report Callback", ex.ToString());
             }

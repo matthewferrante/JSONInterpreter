@@ -34,7 +34,7 @@ namespace PTMSController {
         private bool _isInstalled = false;
         private Logger _logger;
         private ObservableCollection<ReviewRow> _reviewRows = new ObservableCollection<ReviewRow>();
-        private PracticeControllerManager Manager { get { return PracticeControllerManager.Current; }}
+        private PracticeControllerManager Manager { get { return PracticeControllerManager.Current; } }
 
         public MainWindow() {
             _logger = new Logger() {
@@ -66,7 +66,7 @@ namespace PTMSController {
         }
         public void ShowLog(object sender, RoutedEventArgs e) {
             GroupHome.Visibility = Visibility.Hidden;
-            RTBLogWindow.Visibility = Visibility.Visible;            
+            RTBLogWindow.Visibility = Visibility.Visible;
         }
 
         /// <summary>
@@ -152,7 +152,7 @@ namespace PTMSController {
             var sc = GetService();
 
             if (sc == null) {
-                _logger.LogException("SERVICE CONTROL","Unable to get Service.");
+                _logger.LogException("SERVICE CONTROL", "Unable to get Service.");
             }
 
             BtnServiceControl.IsEnabled = false;
@@ -175,13 +175,24 @@ namespace PTMSController {
             _logger.Log("Send All Charts Initiated.");
 
             if (result == MessageBoxResult.Yes) {
+                var creds = Utilities.GetCredentials();
+                var key = PracticeConnector.GetEncryptionKey(creds.ApiUri, creds.AuthToken);
+
                 foreach (var row in _reviewRows) {
                     var newPath = Path.Combine(Manager.ProcessedDirectory, Path.GetFileName(row.FileName));
+
                     if (File.Exists(newPath)) {
                         File.Delete(newPath);
                     }
 
-                    File.Move(row.FileName, newPath);
+                    var text = File.ReadAllText(row.FileName);
+
+                    try {
+                        File.WriteAllText(newPath, StringCipher.Decrypt(text, key));
+                        File.Delete(row.FileName);
+                    } catch (Exception ex) {
+                        _logger.LogException("Send All:Write File", ex.ToString());
+                    }
                 }
             }
         }
@@ -191,8 +202,12 @@ namespace PTMSController {
             if (result == MessageBoxResult.Yes) {
                 _logger.Log("Dashboard Downloading Files");
 
+                var creds = Utilities.GetCredentials();
+
                 try {
-                    PracticeConnector.DownloadReports(Utilities.GetCredentials(), _logger, Manager.IncomingDirectory);
+                    var key = PracticeConnector.GetEncryptionKey(creds.ApiUri, creds.AuthToken);
+
+                    PracticeConnector.DownloadReports(creds, _logger, Manager.IncomingDirectory, key);
 
                     MessageBox.Show("Files successfully downloaded.", "Success", MessageBoxButton.OK);
                     _logger.Log("Successfully downloaded reports. [Manual]");
@@ -278,9 +293,12 @@ namespace PTMSController {
             try {
                 App.Current.Dispatcher.Invoke(delegate { _reviewRows.Clear(); });
 
+                var creds = Utilities.GetCredentials();
+                var key = PracticeConnector.GetEncryptionKey(creds.ApiUri, creds.AuthToken);
+
                 foreach (string file in Directory.EnumerateFiles(Manager.IncomingDirectory, "*.json")) {
                     try {
-                        string contents = File.ReadAllText(file);
+                        string contents = StringCipher.Decrypt(File.ReadAllText(file),key);
                         dynamic r = JObject.Parse(contents);
                         var dob = String.Format("{0}/{1}/{2}", r.Patient.DateOfBirth.Month, r.Patient.DateOfBirth.Day, r.Patient.DateOfBirth.Year);
 
@@ -291,7 +309,7 @@ namespace PTMSController {
                 }
             } catch (Exception exception) {
                 _logger.LogException("Exception Processing Incoming", exception.ToString());
-            }            
+            }
         }
         private void ProcessIncoming(object sender, FileSystemEventArgs e) {
             ProcessIncoming();
@@ -332,8 +350,8 @@ namespace PTMSController {
                 //TODO: Add update functionality
             } catch (Exception ex) {
                 MessageBox.Show("Unable to check for updates.  Please try again shortly.", "Update", MessageBoxButton.OK);
-                
-                _logger.LogException("Check Updates",ex.ToString());
+
+                _logger.LogException("Check Updates", ex.ToString());
             }
         }
 
@@ -341,17 +359,17 @@ namespace PTMSController {
             var creds = Utilities.GetCredentials();
 
             var password = PracticeConnector.GetEncryptionKey(creds.ApiUri, creds.AuthToken);
-            var input = new FileStream(_reviewRows[0].FileName, FileMode.Open, FileAccess.Read);
-            var output = new MemoryStream();
+            //var input = File.ReadAllText(_reviewRows[0].FileName);
 
-            using (output) {
-                AES.CryptStream(CryptoDirection.Encrypt, input, output, password);
+            var input = "This is a test string";
 
-                var sr = new StreamReader(output);
-                var myStr = sr.ReadToEnd();
+            var sc = StringCipher.Encrypt(input, password);
 
-                MessageBox.Show(String.Format("encrypted = {0}", myStr));
-            }
+            MessageBox.Show(String.Format("encrypted = {0}", sc));
+
+            var dc = StringCipher.Decrypt(sc, password);
+
+            MessageBox.Show(String.Format("decrypted = {0}", dc));
 
             //var v = DashboardConnector.GetVersion(creds.ApiUri, creds.AuthToken);
             //var m = DashboardConnector.GetUpdateManifest(creds.ApiUri, v.Version, creds.AuthToken);

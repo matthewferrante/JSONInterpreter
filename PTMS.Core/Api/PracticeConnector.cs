@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using PTMS.Core.Api;
+using PTMS.Core.Crypto;
 using PTMS.Core.Logging;
 
 namespace PTMS.Core.Api {
@@ -65,7 +66,7 @@ namespace PTMS.Core.Api {
         /// <param name="practiceId">The practiceId to download reports from</param>
         /// <param name="log">Logger to log the action</param>
         /// <param name="writeDirectory">Where to write the logs once downloaded</param>
-        public static void DownloadReports(ApiCredentials creds, Logger log, string writeDirectory) {
+        public static void DownloadReports(ApiCredentials creds, Logger log, string writeDirectory, string passPhrase) {
             log.Log("**** Downloading Reports ******");
             var reports = GetAvailableReports(creds.ApiUri, creds.AuthToken);
 
@@ -76,7 +77,7 @@ namespace PTMS.Core.Api {
                 var reportdata = JObject.Parse(s.ReportInbox.ReportInfo.ReportData);
 
                 string json = JsonConvert.SerializeObject(reportdata);
-                File.WriteAllText( Path.Combine(writeDirectory,reportId), json);
+                File.WriteAllText( Path.Combine(writeDirectory,reportId), StringCipher.Encrypt(json, passPhrase));
 
                 log.Log(String.Format("Downloaded Report {0}", reportId));
                 log.Log(String.Format("Removing Report from API: {0}", reportId));
