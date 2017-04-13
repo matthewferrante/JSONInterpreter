@@ -6,7 +6,7 @@
         <Label Content="Version" HorizontalAlignment="Left" Margin="32,34,0,0" VerticalAlignment="Top" Width="48"/>
         <Label Content="0.0.0.0" HorizontalAlignment="Left" Margin="80,34,0,0" VerticalAlignment="Top" Name="lblVersion"/>
         <Label Content="You are running the latest version." HorizontalAlignment="Left" Margin="32,65,0,0" VerticalAlignment="Top" Name="lblServerVersion"/>
-        <Button Content="Update" Visibility="Hidden" Margin="108,140,108,0" VerticalAlignment="Top" Click="Update_Click" Name="btnUpdate"/>
-
+        <Button Content="Update" Visibility="Visible" Margin="108,140,108,0" VerticalAlignment="Top" Click="Update_Click" Name="btnUpdate"/>
+        <ProgressBar HorizontalAlignment="Left" Height="10" Margin="10,176,0,0" VerticalAlignment="Top" Width="274" Name="ProgressBar" Visibility="Hidden"/>
     </Grid>
 </Window>

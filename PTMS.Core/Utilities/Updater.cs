@@ -19,47 +19,47 @@ namespace PTMS.Core.Utilities {
             _currentVersion = currentVersion;
         }
 
-        public void Check(Uri apiUri, dynamic manifest) {
-            if (_updating) {
-                // Already updating
-                return;
-            }
+        //public void Check(Uri apiUri, dynamic manifest) {
+        //    if (_updating) {
+        //        // Already updating
+        //        return;
+        //    }
 
-            var packageUri = new Uri(apiUri, manifest.PackageUrl);
-            var package = Fetch.Get(packageUri.AbsoluteUri);
-            var updateDir = FileSystem.BuildAssemblyPath("Update");
-            var filePath = Path.Combine(updateDir, packageUri.Segments.Last());
+        //    var packageUri = new Uri(apiUri, manifest.PackageUrl);
+        //    var package = Fetch.Get(packageUri.AbsoluteUri);
+        //    var updateDir = FileSystem.BuildAssemblyPath("Update");
+        //    var filePath = Path.Combine(updateDir, packageUri.Segments.Last());
 
-            if (package == null) return;
+        //    if (package == null) return;
 
-            if (!filePath.EndsWith(".zip")) {
-                throw new Exception("Package URL is not a zip file.");
-            }
+        //    if (!filePath.EndsWith(".zip")) {
+        //        throw new Exception("Package URL is not a zip file.");
+        //    }
 
-            // Clean up failed attempts.
-            if (Directory.Exists(updateDir)) {
-                try { Directory.Delete(updateDir, true); } catch (IOException) {
-                    return;
-                }
-            }
+        //    // Clean up failed attempts.
+        //    if (Directory.Exists(updateDir)) {
+        //        try { Directory.Delete(updateDir, true); } catch (IOException) {
+        //            return;
+        //        }
+        //    }
 
-            FileSystem.AssertDirectoryExists(updateDir);
-            File.WriteAllBytes(filePath, package);
+        //    FileSystem.AssertDirectoryExists(updateDir);
+        //    File.WriteAllBytes(filePath, package);
 
-            var checksum = manifest.CheckSum;
+        //    var checksum = manifest.CheckSum;
 
-            string md5sum = FileSystem.MD5Sum(filePath);
+        //    string md5sum = FileSystem.MD5Sum(filePath);
 
-            if (!md5sum.Equals(checksum, StringComparison.CurrentCultureIgnoreCase)) {
-                throw new Exception("Checksums do not match on update.");
-            }
+        //    if (!md5sum.Equals(checksum, StringComparison.CurrentCultureIgnoreCase)) {
+        //        throw new Exception("Checksums do not match on update.");
+        //    }
 
-            _updating = true;
-            Update(filePath, updateDir);
-            _updating = false;
-        }
+        //    _updating = true;
+        //    Update(filePath, updateDir);
+        //    _updating = false;
+        //}
 
-        private void Update(string packagePath, string updateDir) {
+        public static void Update(string packagePath, string updateDir) {
             ZipFile.ExtractToDirectory(packagePath, updateDir);
             File.Delete(packagePath);
 
