@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Configuration.Install;
 using System.IO;
 using System.Linq;
@@ -13,6 +14,8 @@ using System.Windows.Controls;
 
 using PTMS.Core;
 using System.Configuration;
+using System.Net;
+using System.Threading;
 using System.Windows.Threading;
 using Newtonsoft.Json.Linq;
 using PTMS.Core.Api;
@@ -338,22 +341,7 @@ namespace PTMSController {
         private void ShowAbout(object sender, EventArgs e) {
             MessageBox.Show(String.Format("\u00a9 {0} Primetime Medical Software\nCurrent Version: {1}", DateTime.Now.Year, Assembly.GetExecutingAssembly().GetName().Version), "About", MessageBoxButton.OK);
         }
-        private void CheckUpdates(object sender, EventArgs e) {
-            var creds = Utilities.GetCredentials();
 
-            try {
-                var v = DashboardConnector.GetVersion(creds.ApiUri, creds.AuthToken);
-                var s = String.Format("Current Version: {0}\nLastest Version: {1}", Assembly.GetExecutingAssembly().GetName().Version, v.Version);
-
-                MessageBox.Show(s, "Update", MessageBoxButton.OK);
-
-                //TODO: Add update functionality
-            } catch (Exception ex) {
-                MessageBox.Show("Unable to check for updates.  Please try again shortly.", "Update", MessageBoxButton.OK);
-
-                _logger.LogException("Check Updates", ex.ToString());
-            }
-        }
 
         private void Test_Click(object sender, EventArgs e) {
             var creds = Utilities.GetCredentials();
@@ -371,12 +359,31 @@ namespace PTMSController {
 
             MessageBox.Show(String.Format("decrypted = {0}", dc));
 
-            //var v = DashboardConnector.GetVersion(creds.ApiUri, creds.AuthToken);
-            //var m = DashboardConnector.GetUpdateManifest(creds.ApiUri, v.Version, creds.AuthToken);
+        }
 
-            //Updater u = new Updater(m.Version);
+        private void startDownload() {
+            Thread thread = new Thread(() => {
+                WebClient client = new WebClient();
+                client.DownloadProgressChanged += new DownloadProgressChangedEventHandler(client_DownloadProgressChanged);
+                client.DownloadFileCompleted += new AsyncCompletedEventHandler(client_DownloadFileCompleted);
+                client.DownloadFileAsync(new Uri("http://joshua-ferrara.com/luahelper/lua.syn"), @"C:\LUAHelper\Syntax Files\lua.syn");
+            });
+            thread.Start();
+        }
 
-            //u.Check(creds.ApiUri, m);
+        void client_DownloadProgressChanged(object sender, DownloadProgressChangedEventArgs e) {
+            this.BeginInvoke((MethodInvoker)delegate {
+                double bytesIn = double.Parse(e.BytesReceived.ToString());
+                double totalBytes = double.Parse(e.TotalBytesToReceive.ToString());
+                double percentage = bytesIn / totalBytes * 100;
+                label2.Text = "Downloaded " + e.BytesReceived + " of " + e.TotalBytesToReceive;
+                progressBar1.Value = int.Parse(Math.Truncate(percentage).ToString());
+            });
+        }
+        void client_DownloadFileCompleted(object sender, AsyncCompletedEventArgs e) {
+            this.BeginInvoke((MethodInvoker)delegate {
+                label2.Text = "Completed";
+            });
         }
     }
 }
