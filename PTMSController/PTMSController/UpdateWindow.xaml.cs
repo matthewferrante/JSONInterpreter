@@ -56,6 +56,8 @@ namespace PTMSController {
                 client.DownloadFileAsync(uri, writePath);
             });
             thread.Start();
+
+            App.Current.Dispatcher.Invoke(delegate { btnUpdate.IsEnabled = false; });
         }
         void client_DownloadProgressChanged(object sender, DownloadProgressChangedEventArgs e) {
             App.Current.Dispatcher.Invoke(delegate {
