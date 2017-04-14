@@ -1,20 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
 using System.Linq;
 using System.Net;
 using System.Reflection;
-using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
 using PTMS.Core.Api;
 using PTMS.Core.Configuration;
 using PTMS.Core.Utilities;
@@ -34,9 +25,9 @@ namespace PTMSController {
             InitializeComponent();
 
             _creds = Utilities.GetCredentials();
-            _manifest = DashboardConnector.GetUpdateManifest(_creds.ApiUri, ServerVersion.ToString(), _creds.AuthToken);
             ServerVersion = new Version(DashboardConnector.GetVersion(_creds.ApiUri, _creds.AuthToken).Version);
             Version = Assembly.GetExecutingAssembly().GetName().Version;
+            _manifest = DashboardConnector.GetUpdateManifest(_creds.ApiUri, ServerVersion.ToString(), _creds.AuthToken);
 
             lblVersion.Content = Version;
 
@@ -44,12 +35,12 @@ namespace PTMSController {
                 lblServerVersion.Content = String.Format("The lastest verision is {0}", ServerVersion);
                 btnUpdate.Visibility = Visibility.Visible;
             }
-
         }
 
         private void Update_Click(object sender, RoutedEventArgs e) {
             try {
                 // Do update
+                ProgressBar.Visibility = Visibility.Visible;
 
                 Check(_creds.ApiUri, _manifest);
             } catch (Exception ex) {
@@ -72,7 +63,7 @@ namespace PTMSController {
                 double totalBytes = double.Parse(e.TotalBytesToReceive.ToString());
                 double percentage = bytesIn / totalBytes * 100;
 
-                btnUpdate.Content = String.Format("Downloaded {0:P}", percentage);
+                lblServerVersion.Content = String.Format("Downloaded: {0:P}", percentage/100);
                 ProgressBar.Value = int.Parse(Math.Truncate(percentage).ToString());
             });
         }
@@ -94,6 +85,8 @@ namespace PTMSController {
             }
 
             Updater.Update(filePath, updateDir);
+
+            App.Current.Dispatcher.Invoke(delegate { App.Current.Shutdown(); });
         }
 
         public void Check(Uri apiUri, dynamic manifest) {            
@@ -114,8 +107,6 @@ namespace PTMSController {
 
             FileSystem.AssertDirectoryExists(updateDir);
             startDownload(new Uri(packageUri.AbsoluteUri), filePath);
-
-
         }
 
     }

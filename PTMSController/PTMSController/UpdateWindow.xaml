@@ -1,12 +1,13 @@
 ﻿<Window x:Class="PTMSController.UpdateWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="Update" Height="300" Width="300" ResizeMode="NoResize">
+        Title="Update" Height="300" Width="300" ResizeMode="NoResize"
+        WindowStartupLocation="CenterScreen">
     <Grid>
         <Label Content="Version" HorizontalAlignment="Left" Margin="32,34,0,0" VerticalAlignment="Top" Width="48"/>
         <Label Content="0.0.0.0" HorizontalAlignment="Left" Margin="80,34,0,0" VerticalAlignment="Top" Name="lblVersion"/>
         <Label Content="You are running the latest version." HorizontalAlignment="Left" Margin="32,65,0,0" VerticalAlignment="Top" Name="lblServerVersion"/>
-        <Button Content="Update" Visibility="Visible" Margin="108,140,108,0" VerticalAlignment="Top" Click="Update_Click" Name="btnUpdate"/>
-        <ProgressBar HorizontalAlignment="Left" Height="10" Margin="10,176,0,0" VerticalAlignment="Top" Width="274" Name="ProgressBar" Visibility="Hidden"/>
+        <Button Content="Update" Visibility="Hidden" Margin="108,140,108,0" VerticalAlignment="Top" Click="Update_Click" Name="btnUpdate"/>
+        <ProgressBar Height="50" HorizontalAlignment="Center" Width="250" Name="ProgressBar" Visibility="Hidden" Margin="22,191,22,64"/>
     </Grid>
 </Window>

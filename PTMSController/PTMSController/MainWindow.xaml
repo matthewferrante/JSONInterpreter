@@ -3,7 +3,8 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="Primetime Medical Software - Services Dashboard" Height="964" Width="1101"
         Icon=".\favicon.ico"
-        Background="{DynamicResource WindowBrush}">
+        Background="{DynamicResource WindowBrush}"
+        WindowStartupLocation="CenterScreen">
     <Window.Resources>
         <SolidColorBrush x:Key="WindowBrush" Color="#EBEBEB"/>
     </Window.Resources>
@@ -100,7 +101,7 @@
         </GroupBox>
         <Button Content="Send All to Chart" Name="btnSendAll" Margin="19,85,0,0" VerticalAlignment="Top" Click="btnSendAll_Click" Height="24" HorizontalAlignment="Left" Width="116"/>
         <Button Content="Get Files" Name="btnGetFiles" Margin="19,114,0,0" VerticalAlignment="Top" Click="btnGetFiles_Click" Height="24" HorizontalAlignment="Left" Width="116" RenderTransformOrigin="0.526,1.917"/>
-        <Button Content="Test" HorizontalAlignment="Left" Margin="19,162,0,0" VerticalAlignment="Top" Width="76" Click="Test_Click"/>
+        <Button Content="Test" HorizontalAlignment="Left" Margin="19,162,0,0" VerticalAlignment="Top" Width="76" Click="Test_Click" Visibility="Hidden"/>
 
         <!--<RichTextBox Margin="103,54,10,9" x:Name="RTBLogWindow_Copy" VerticalScrollBarVisibility="Auto" IsReadOnly="True">
             <FlowDocument>
