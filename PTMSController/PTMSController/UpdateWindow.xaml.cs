@@ -75,7 +75,7 @@ namespace PTMSController {
             });
 
             var packageUri = new Uri(_creds.ApiUri, _manifest.PackageUrl);
-            var updateDir = FileSystem.BuildAssemblyPath("Update");
+            var updateDir = FileSystem.BuildAssemblyRelPath("Update");
             var filePath = Path.Combine(updateDir, packageUri.Segments.Last());
 
             var checksum = _manifest.CheckSum;
@@ -88,12 +88,17 @@ namespace PTMSController {
 
             Updater.Update(filePath, updateDir);
 
-            App.Current.Dispatcher.Invoke(delegate { App.Current.Shutdown(); });
+            try {
+                App.Current.Dispatcher.Invoke(delegate { App.Current.Shutdown(); });
+            } catch {
+                MessageBox.Show("There was a problem shutting down the application. Please shut down all instances of the PTMS Service and Dashboard before continuing with the update.");
+            }
+            
         }
 
         public void Check(Uri apiUri, dynamic manifest) {            
             var packageUri = new Uri(apiUri, manifest.PackageUrl);
-            var updateDir = FileSystem.BuildAssemblyPath("Update");
+            var updateDir = FileSystem.BuildAssemblyRelPath("Update");
             var filePath = Path.Combine(updateDir, packageUri.Segments.Last());
 
             if (!filePath.EndsWith(".zip")) {

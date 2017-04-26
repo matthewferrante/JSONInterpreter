@@ -12,7 +12,7 @@ namespace PTMS.Core {
                             SERVICE_EXE = "PTMSClientService.exe",
                             SERVICE_PATH_KEY = "ServiceRelativePath",
                             ENCRYPTION_SALT = "jjwofjeijwofjqhuwq38vv9",
-                            APP_SETTING_LOGFILE = "LogFile",
+                            APP_SETTING_LOGFILE = "LogFileName",
                             SETTING_API_URL = "ApiEndpointUrl",
                             SETTING_DASHBOARD_VERSION = "DashboardVersion",
                             SETTING_USERNAME = "ProviderUserName",

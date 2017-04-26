@@ -18,7 +18,6 @@ namespace PTMSClientService {
         private string _incomingDir;
         private string _outgoingDir;
         private string _uploadDir;
-        private string _practiceId;
 
 
         public ClientService() {
@@ -31,9 +30,9 @@ namespace PTMSClientService {
         protected override void OnStart(string[] args) {
             _logger.Log("Service Started");
 
-            _incomingDir = FileSystem.BuildAssemblyPath(ConfigurationManager.AppSettings[Constants.SETTING_INCOMING_DIRECTORY]);
-            _outgoingDir = FileSystem.BuildAssemblyPath(ConfigurationManager.AppSettings[Constants.SETTING_OUTGOING_DIRECTORY]);
-            _practiceId = ConfigurationManager.AppSettings[Constants.SETTING_PRACTICE_ID];
+            _incomingDir = FileSystem.BuildAbsolutePath(ConfigurationManager.AppSettings[Constants.SETTING_INCOMING_DIRECTORY]);
+            _outgoingDir = FileSystem.BuildAbsolutePath(ConfigurationManager.AppSettings[Constants.SETTING_OUTGOING_DIRECTORY]);
+            //_practiceId = ConfigurationManager.AppSettings[Constants.SETTING_PRACTICE_ID];
 
             FileSystem.AssertDirectoryExists(_outgoingDir);
             FileSystem.AssertDirectoryExists(_incomingDir);

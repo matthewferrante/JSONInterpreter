@@ -9,20 +9,26 @@ namespace PTMS.Core.Logging {
         public string NameSpace { get; set; }
 
         private string _logFile;
-        private static string LOG_FILE_NAME = ConfigurationManager.AppSettings[Constants.APP_SETTING_LOGFILE];
+        private static readonly string LOG_FILE_NAME = ConfigurationManager.AppSettings[Constants.APP_SETTING_LOGFILE];
 
         public Logger() {
             string rawName = Assembly.GetExecutingAssembly().Location;
-            string dirName = Path.GetDirectoryName(rawName);
+            string dirName = Path.GetDirectoryName(rawName) ?? "";
 
-            _logFile = dirName + LOG_FILE_NAME;
+            _logFile = Path.Combine(dirName, LOG_FILE_NAME);
+            
             NameSpace = "";
         }
 
         public void Log(string logMessage) {
             //TODO: Make this threadsafe
-            using (StreamWriter w = new StreamWriter(_logFile, true)) {
-                w.WriteLine("{0} [{1}]: {2}", DateTime.Now, NameSpace, logMessage);
+
+            try {
+                using (StreamWriter w = new StreamWriter(_logFile, true)) {
+                    w.WriteLine("{0} [{1}]: {2}", DateTime.Now, NameSpace, logMessage);
+                }
+            } catch (Exception ex) {
+                throw new ApplicationException(String.Format("Unable to log to log file. Log = {0}, Path = {1}\n{2}", LOG_FILE_NAME, _logFile, ex));
             }
         }
         public string ReadTail() {

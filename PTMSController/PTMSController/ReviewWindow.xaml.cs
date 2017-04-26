@@ -16,6 +16,7 @@ using System.Windows.Media.Imaging;
 using Newtonsoft.Json.Linq;
 using PTMSController.Models;
 using System.IO;
+using System.Security;
 using Newtonsoft.Json;
 using PTMS.Core;
 using PTMS.Core.Api;
@@ -32,6 +33,7 @@ namespace PTMSController {
         private dynamic _findings;
         private string _processedDir;
         private string _fileName;
+        private String _key;
         private readonly PracticeControllerManager pcm;
 
         public ReviewWindow(ReviewRow rr) {
@@ -41,9 +43,9 @@ namespace PTMSController {
             _fileName = rr.FileName;
 
             var creds = Utilities.GetCredentials();
-            var key = PracticeConnector.GetEncryptionKey(creds.ApiUri, creds.AuthToken);
+            _key = PracticeConnector.GetEncryptionKey(creds.ApiUri, creds.AuthToken);
 
-            dynamic r = JObject.Parse(StringCipher.Decrypt(File.ReadAllText(rr.FileName), key));  // This may cause problems.  Full path being read from variable?
+            dynamic r = JObject.Parse(StringCipher.Decrypt(File.ReadAllText(_fileName), _key));  // This may cause problems.  Full path being read from variable?
 
             tbFirstName.Text = r.Patient.FirstName;
             tbLastName.Text = r.Patient.LastName;
@@ -68,7 +70,7 @@ namespace PTMSController {
         private void Save_Click(object sender, RoutedEventArgs e) {
             JArray sf = new JArray();
 
-            dynamic r = JObject.Parse(File.ReadAllText(_fileName));
+            dynamic r = JObject.Parse(StringCipher.Decrypt(File.ReadAllText(_fileName), _key));
 
             foreach (var finding in _findings) {
                 string dt = finding.DisplayText;

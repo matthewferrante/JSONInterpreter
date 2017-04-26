@@ -111,7 +111,7 @@ namespace PTMSController {
         }
         private void CreateLogWatcher() {
             if (_isInstalled) {
-                string logFile = FileSystem.BuildAssemblyPath(ConfigurationManager.AppSettings[Constants.SERVICE_PATH_KEY]) + ConfigurationManager.AppSettings[Constants.APP_SETTING_LOGFILE];
+                string logFile = FileSystem.BuildAssemblyRelPath(ConfigurationManager.AppSettings[Constants.SERVICE_PATH_KEY]) + ConfigurationManager.AppSettings[Constants.APP_SETTING_LOGFILE];
 
 
                 try {

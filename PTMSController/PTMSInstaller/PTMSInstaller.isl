@@ -340,6 +340,7 @@
 		<col def="S0">ISDotNetInstallerArgsCommit</col>
 		<col def="S0">ISDotNetInstallerArgsUninstall</col>
 		<col def="S0">ISDotNetInstallerArgsRollback</col>
+		<row><td>ISX_DEFAULTCOMPONENT</td><td>{F4891551-B955-43AA-BFC9-8DB743F610FD}</td><td>CommonFilesFolder</td><td>2</td><td/><td/><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>ISX_DEFAULTCOMPONENT1</td><td>{8254E485-A8D1-4446-81B8-25585265A4AB}</td><td>INSTALLDIR</td><td>2</td><td/><td/><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>PTMS.Core.Primary_output</td><td>{45ADEA1D-BED5-4E23-A916-A7016C4721CC}</td><td>INSTALLDIR</td><td>2</td><td/><td>ptms.core.primary_output</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>PTMSClientService.Primary_output</td><td>{E4CF92F7-5D0F-4681-9DAB-365B5620BD3E}</td><td>INSTALLDIR</td><td>2</td><td/><td>ptmsclientservice.primary_ou</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
@@ -1052,6 +1053,8 @@
 	<table name="CreateFolder">
 		<col key="yes" def="s72">Directory_</col>
 		<col key="yes" def="s72">Component_</col>
+		<row><td>CommonFilesFolder</td><td>ISX_DEFAULTCOMPONENT</td></row>
+		<row><td>INSTALLDIR</td><td>ISX_DEFAULTCOMPONENT</td></row>
 		<row><td>INSTALLDIR</td><td>ISX_DEFAULTCOMPONENT1</td></row>
 		<row><td>INSTALLDIR</td><td>PTMS.Core.Primary_output</td></row>
 		<row><td>INSTALLDIR</td><td>PTMSClientService.Primary_output</td></row>
@@ -1870,6 +1873,7 @@
 	<table name="FeatureComponents">
 		<col key="yes" def="s38">Feature_</col>
 		<col key="yes" def="s72">Component_</col>
+		<row><td>AlwaysInstall</td><td>ISX_DEFAULTCOMPONENT</td></row>
 		<row><td>AlwaysInstall</td><td>ISX_DEFAULTCOMPONENT1</td></row>
 		<row><td>AlwaysInstall</td><td>PTMS.Core.Primary_output</td></row>
 		<row><td>AlwaysInstall</td><td>PTMSClientService.Primary_output</td></row>
@@ -2033,6 +2037,7 @@
 		<col def="S0">FTPLocation</col>
 		<col def="S0">HTTPLocation</col>
 		<col def="S0">Miscellaneous</col>
+		<row><td>ISX_DEFAULTCOMPONENT</td><td/><td/><td>_85D29D2C_D2B9_4E13_8DB5_8D166FE27CBE_FILTER</td><td/><td/><td/><td/></row>
 		<row><td>ISX_DEFAULTCOMPONENT1</td><td/><td/><td>_42F9D560_076D_495D_9937_1399B0453FAC_FILTER</td><td/><td/><td/><td/></row>
 		<row><td>PTMS.Core.Primary_output</td><td/><td/><td>_F30CCE3C_08E1_4D79_AABF_77562CAA026B_FILTER</td><td/><td/><td/><td/></row>
 		<row><td>PTMSClientService.Primary_output</td><td/><td/><td>_11CC8E56_1F01_44D6_98FA_D9CB07986CB4_FILTER</td><td/><td/><td/><td/></row>
@@ -2628,7 +2633,7 @@
 		<col def="I2">Encoded</col>
 		<col def="S0">Comment</col>
 		<col def="I4">TimeStamp</col>
-		<row><td>COMPANY_NAME</td><td>1033</td><td>Primetime Medical Software</td><td>0</td><td/><td>153447315</td></row>
+		<row><td>COMPANY_NAME</td><td>1033</td><td>Primetime Medical Software</td><td>0</td><td/><td>-1037725002</td></row>
 		<row><td>DN_AlwaysInstall</td><td>1033</td><td>Always Install</td><td>0</td><td/><td>1822725846</td></row>
 		<row><td>IDPROP_EXPRESS_LAUNCH_CONDITION_COLOR</td><td>1033</td><td>The color settings of your system are not adequate for running [ProductName].</td><td>0</td><td/><td>1822725846</td></row>
 		<row><td>IDPROP_EXPRESS_LAUNCH_CONDITION_DOTNETVERSION45FULL</td><td>1033</td><td>Microsoft .NET Framework 4.5 Full package or greater needs to be installed for this installation to continue.</td><td>0</td><td/><td>287646510</td></row>
@@ -3731,13 +3736,13 @@
 		<row><td>IDS__TargetReq_DESC_PROCESSOR</td><td>1033</td><td>The processor is not adequate for running [ProductName].</td><td>0</td><td/><td>1822725846</td></row>
 		<row><td>IDS__TargetReq_DESC_RAM</td><td>1033</td><td>The amount of RAM is not adequate for running [ProductName].</td><td>0</td><td/><td>1822725846</td></row>
 		<row><td>IDS__TargetReq_DESC_RESOLUTION</td><td>1033</td><td>The screen resolution is not adequate for running [ProductName].</td><td>0</td><td/><td>1822725846</td></row>
-		<row><td>ID_STRING1</td><td>1033</td><td>http://www.PrimetimeMedicalSoftware.com</td><td>0</td><td/><td>153447315</td></row>
-		<row><td>ID_STRING2</td><td>1033</td><td>Primetime Medical Software</td><td>0</td><td/><td>153447315</td></row>
+		<row><td>ID_STRING1</td><td>1033</td><td>http://www.PrimetimeMedicalSoftware.com</td><td>0</td><td/><td>-1037725002</td></row>
+		<row><td>ID_STRING2</td><td>1033</td><td>Primetime Medical Software</td><td>0</td><td/><td>-1037725002</td></row>
 		<row><td>ID_STRING3</td><td>1033</td><td>PTMS Client Service</td><td>0</td><td/><td>1956927980</td></row>
 		<row><td>ID_STRING4</td><td>1033</td><td>Primetime Medical Software Client Service</td><td>0</td><td/><td>1956940268</td></row>
 		<row><td>ID_STRING5</td><td>1033</td><td>PTMS Service Dashboard</td><td>0</td><td/><td>1956908885</td></row>
 		<row><td>ID_STRING6</td><td>1033</td><td>support@medicalhistory.com</td><td>0</td><td/><td>153453427</td></row>
-		<row><td>ID_STRING7</td><td>1033</td><td>http://www.PrimetimeMedicalSoftware.com</td><td>0</td><td/><td>153447315</td></row>
+		<row><td>ID_STRING7</td><td>1033</td><td>http://www.PrimetimeMedicalSoftware.com</td><td>0</td><td/><td>-1037725002</td></row>
 		<row><td>ID_STRING8</td><td>1033</td><td>http://www.medicalhistory.com</td><td>0</td><td/><td>153428883</td></row>
 		<row><td>IIDS_UITEXT_FeatureUninstalled</td><td>1033</td><td>This feature will remain uninstalled.</td><td>0</td><td/><td>1822725846</td></row>
 	</table>
@@ -3986,7 +3991,7 @@ UwBpAG4AZwBsAGUASQBtAGEAZwBlAAEARQB4AHAAcgBlAHMAcwA=
 		<row><td>ISTheme</td><td>InstallShield Blue.theme</td></row>
 		<row><td>ISUSLock</td><td>{A202BC9A-B164-4AB9-BF2A-BAD6776AABC6}</td></row>
 		<row><td>ISUSSignature</td><td>{4294CC67-90B3-40AD-A198-41EBEFB25B47}</td></row>
-		<row><td>ISVisitedViews</td><td>viewAssistant,viewISToday,viewLearnMore,viewAppFiles,viewObjects,viewSystemSearch,viewServices,viewShortcuts,viewProject,viewUpgradePaths,viewVRoots,viewEnvironmentVariables,viewFileExtensions,viewIniFiles,viewRegistry,viewCustomActions,viewRelease</td></row>
+		<row><td>ISVisitedViews</td><td>viewAssistant,viewISToday,viewLearnMore,viewAppFiles,viewObjects,viewSystemSearch,viewServices,viewShortcuts,viewProject,viewUpgradePaths,viewVRoots,viewEnvironmentVariables,viewFileExtensions,viewIniFiles,viewRegistry,viewCustomActions,viewRelease,viewUI,viewTextMessages,viewUpdateService</td></row>
 		<row><td>Limited</td><td>1</td></row>
 		<row><td>LockPermissionMode</td><td>1</td></row>
 		<row><td>MsiExecCmdLineOptions</td><td/></row>
@@ -4363,9 +4368,9 @@ UwBpAG4AZwBsAGUASQBtAGEAZwBlAAEARQB4AHAAcgBlAHMAcwA=
 		<row><td>PROGMSG_IIS_ROLLBACKAPPPOOLS</td><td>##IDS_PROGMSG_IIS_ROLLBACKAPPPOOLS##</td><td/></row>
 		<row><td>PROGMSG_IIS_ROLLBACKVROOTS</td><td>##IDS_PROGMSG_IIS_ROLLBACKVROOTS##</td><td/></row>
 		<row><td>PROGMSG_IIS_ROLLBACKWEBSERVICEEXTENSIONS</td><td>##IDS_PROGMSG_IIS_ROLLBACKWEBSERVICEEXTENSIONS##</td><td/></row>
-		<row><td>ProductCode</td><td>{32DFBE86-9825-46CF-801D-50C8632810FE}</td><td/></row>
+		<row><td>ProductCode</td><td>{FCB6F097-5410-45E9-98D2-86A0A12C51E0}</td><td/></row>
 		<row><td>ProductName</td><td>PTMS Service Dashboard</td><td/></row>
-		<row><td>ProductVersion</td><td>0.1.0.4</td><td/></row>
+		<row><td>ProductVersion</td><td>0.1.0.6</td><td/></row>
 		<row><td>ProgressType0</td><td>install</td><td/></row>
 		<row><td>ProgressType1</td><td>Installing</td><td/></row>
 		<row><td>ProgressType2</td><td>installed</td><td/></row>
@@ -4377,6 +4382,7 @@ UwBpAG4AZwBsAGUASQBtAGEAZwBlAAEARQB4AHAAcgBlAHMAcwA=
 		<row><td>RestartManagerOption</td><td>CloseRestart</td><td/></row>
 		<row><td>SERIALNUMBER</td><td/><td/></row>
 		<row><td>SERIALNUMVALSUCCESSRETVAL</td><td>1</td><td/></row>
+		<row><td>SHOWLAUNCHPROGRAM</td><td>-1</td><td/></row>
 		<row><td>SecureCustomProperties</td><td>ISFOUNDNEWERPRODUCTVERSION;USERNAME;COMPANYNAME;ISX_SERIALNUM;SUPPORTDIR;DOTNETVERSION45FULL;ISACTIONPROP1</td><td/></row>
 		<row><td>SelectedSetupType</td><td>##IDS__DisplayName_Typical##</td><td/></row>
 		<row><td>SetupType</td><td>Typical</td><td/></row>
@@ -4490,7 +4496,7 @@ UwBpAG4AZwBsAGUASQBtAGEAZwBlAAEARQB4AHAAcgBlAHMAcwA=
 		<col def="S255">Arguments</col>
 		<col def="I2">Wait</col>
 		<col def="s72">Component_</col>
-		<row><td>NewEvent1</td><td>PTMSClientService</td><td>129</td><td/><td>0</td><td>PTMSClientService.Primary_output</td></row>
+		<row><td>NewEvent1</td><td>PTMSClientService</td><td>128</td><td/><td>0</td><td>PTMSClientService.Primary_output</td></row>
 	</table>
 
 	<table name="ServiceInstall">
@@ -4654,7 +4660,7 @@ UwBpAG4AZwBsAGUASQBtAGEAZwBlAAEARQB4AHAAcgBlAHMAcwA=
 		<col def="s72">ActionProperty</col>
 		<col def="S72">ISDisplayName</col>
 		<row><td>{00000000-0000-0000-0000-000000000000}</td><td>***ALL_VERSIONS***</td><td></td><td></td><td>2</td><td/><td>ISFOUNDNEWERPRODUCTVERSION</td><td>ISPreventDowngrade</td></row>
-		<row><td>{F747CB56-093A-409E-A2A5-E7B4E21DB02E}</td><td></td><td>0.1.0.2</td><td></td><td>768</td><td/><td>ISACTIONPROP1</td><td>0.1.0.2</td></row>
+		<row><td>{F747CB56-093A-409E-A2A5-E7B4E21DB02E}</td><td></td><td>0.1.0.5</td><td></td><td>768</td><td/><td>ISACTIONPROP1</td><td>NewUpgradeEntry1</td></row>
 	</table>
 
 	<table name="Verb">

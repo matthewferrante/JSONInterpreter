@@ -39,7 +39,7 @@ namespace PTMS.Core.Api {
                 return true;
             }
 
-            throw new Exception(await hrm.Content.ReadAsStringAsync());
+            throw new Exception(String.Format("API = {0}, exception = {1}, status = {2}", apiEndpoint, await hrm.Content.ReadAsStringAsync(), hrm.StatusCode));
         }
 
         /// <summary>
