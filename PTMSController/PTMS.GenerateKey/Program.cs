@@ -11,7 +11,7 @@ namespace PTMS.GenerateKey {
             //testuser@test.com:testingPassword123!
             //AM/9g+c39HnUT8Ioe3D4Y0uOLzDQdmWBb3raXpFHm8VYk/ZNt3rW+qXLFaiV+1WoWw==
 
-            var hash = HashPassword("K66ZD5z0ocbL7xqhpvTx");
+            var hash = HashPassword("sbxdffzb9h3K=P4p%kDr");
 
             Console.WriteLine("Hash => {0}", hash);
 
@@ -23,6 +23,7 @@ namespace PTMS.GenerateKey {
 
             Console.WriteLine("Key 1 => {0}", s);
             Console.WriteLine("Key 2 => {0}", d);
+            Console.WriteLine("Password Hash => {0}",hash);
         }
 
         // Function to Generate a 64 bits Key.

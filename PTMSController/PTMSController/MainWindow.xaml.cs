@@ -40,16 +40,22 @@ namespace PTMSController {
         private PracticeControllerManager Manager { get { return PracticeControllerManager.Current; } }
 
         public MainWindow() {
-            _logger = new Logger() {
-                NameSpace = Constants.DASHBOARD_NAME
-            };
+            try {
 
-            // Set the Singleton of the Manager
-            Application.Current.Properties.Add(Constants.CONTROLLER_MANAGER, new PracticeControllerManager(_logger));
+                _logger = new Logger() {
+                    NameSpace = Constants.DASHBOARD_NAME
+                };
 
-            InitializeComponent();
-            Setup();
-            CreateWatchers();
+                // Set the Singleton of the Manager
+                Application.Current.Properties.Add(Constants.CONTROLLER_MANAGER, new PracticeControllerManager(_logger));
+
+                InitializeComponent();
+                Setup();
+                CreateWatchers();
+            } catch (ConfigurationErrorsException cee) {
+                MessageBox.Show(String.Format("A configuration error has occurred that has prevented the program from starting.  Please check the config file and try again.\n{0}",cee));
+                Application.Current.Shutdown();
+            }
         }
 
         public void Setup() {
@@ -173,7 +179,7 @@ namespace PTMSController {
             }
         }
         private void btnSendAll_Click(object sender, RoutedEventArgs e) {
-            var result = MessageBox.Show("Are you sure you want to send all charts?", "Confrim Send All", MessageBoxButton.YesNo);
+            var result = MessageBox.Show("Are you sure you want to send all charts?", "Confirm Send All", MessageBoxButton.YesNo);
 
             _logger.Log("Send All Charts Initiated.");
 
@@ -205,12 +211,10 @@ namespace PTMSController {
             if (result == MessageBoxResult.Yes) {
                 _logger.Log("Dashboard Downloading Files");
 
-                var creds = Utilities.GetCredentials();
-
                 try {
-                    var key = PracticeConnector.GetEncryptionKey(creds.ApiUri, creds.AuthToken);
+                    var key = PracticeConnector.GetEncryptionKey(Manager.ApiCredentials.ApiUri, Manager.ApiCredentials.AuthToken);
 
-                    PracticeConnector.DownloadReports(creds, _logger, Manager.IncomingDirectory, key);
+                    PracticeConnector.DownloadReports(Manager.ApiCredentials, _logger, Manager.IncomingDirectory, key);
 
                     MessageBox.Show("Files successfully downloaded.", "Success", MessageBoxButton.OK);
                     _logger.Log("Successfully downloaded reports. [Manual]");
@@ -296,8 +300,8 @@ namespace PTMSController {
             try {
                 App.Current.Dispatcher.Invoke(delegate { _reviewRows.Clear(); });
 
-                var creds = Utilities.GetCredentials();
-                var key = PracticeConnector.GetEncryptionKey(creds.ApiUri, creds.AuthToken);
+                //var creds = Utilities.GetCredentials();
+                var key = PracticeConnector.GetEncryptionKey(Manager.ApiCredentials.ApiUri, Manager.ApiCredentials.AuthToken);
 
                 foreach (string file in Directory.EnumerateFiles(Manager.IncomingDirectory, "*.json")) {
                     try {

@@ -1,10 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Configuration;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using PTMS.Core;
 using PTMS.Core.Logging;
@@ -20,10 +16,7 @@ namespace PTMSController {
         private readonly Logger _logger;
 
         public PracticeControllerManager(Logger logger) {
-            IncomingDirectory = FileSystem.BuildAbsolutePath(ConfigurationManager.AppSettings[Constants.SETTING_INCOMING_DIRECTORY]);
-            OutgoingDirectory = FileSystem.BuildAbsolutePath(ConfigurationManager.AppSettings[Constants.SETTING_OUTGOING_DIRECTORY]);
-            ProcessedDirectory = FileSystem.BuildAbsolutePath(ConfigurationManager.AppSettings[Constants.SETTING_PROCESSED_DIRECTORY]);
-            DeletedDirectory = FileSystem.BuildAbsolutePath(ConfigurationManager.AppSettings[Constants.SETTING_DELETED_DIRECTORY]);
+            VerifyAndLoadConfiguration();
 
             FileSystem.AssertDirectoryExists(IncomingDirectory);
             FileSystem.AssertDirectoryExists(OutgoingDirectory);
@@ -48,6 +41,20 @@ namespace PTMSController {
             } catch (Exception ex) {
                 _logger.LogException("Removing Incoming Questionnaire", ex.ToString());
             }
+        }
+
+        private bool VerifyAndLoadConfiguration() {
+            try {
+                IncomingDirectory = FileSystem.BuildAbsolutePath(ConfigurationManager.AppSettings[Constants.SETTING_INCOMING_DIRECTORY]);
+                OutgoingDirectory = FileSystem.BuildAbsolutePath(ConfigurationManager.AppSettings[Constants.SETTING_OUTGOING_DIRECTORY]);
+                ProcessedDirectory = FileSystem.BuildAbsolutePath(ConfigurationManager.AppSettings[Constants.SETTING_PROCESSED_DIRECTORY]);
+                DeletedDirectory = FileSystem.BuildAbsolutePath(ConfigurationManager.AppSettings[Constants.SETTING_DELETED_DIRECTORY]);
+            } catch (Exception ex) {
+                throw new ConfigurationErrorsException(String.Format("There is an error in the configuration file.  Please check the file and try again.\nReason: {0}", ex));
+            }
+
+
+            return true;
         }
     }
 }

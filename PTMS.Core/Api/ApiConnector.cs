@@ -10,6 +10,7 @@ using System.Text;
 
 namespace PTMS.Core.Api {
     public class ApiConnector {
+        // TODO: Revisit the async implementation here
         public static String API_ENDPOINT = ConfigurationManager.AppSettings[Constants.SETTING_API_URL];
         
         private const String JSON_MEDIA_TYPE = "application/json";
@@ -23,7 +24,7 @@ namespace PTMS.Core.Api {
                     return x;
                 }
 
-                throw new Exception("Error retrieving resource");
+                throw new Exception(String.Format("Error retrieving resource. Return Status: {0}", response.StatusCode));
             }
         }
 
