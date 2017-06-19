@@ -1,6 +1,4 @@
 ﻿using System.Reflection;
-using System.Resources;
-using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using System.Windows;
 
@@ -51,5 +49,27 @@ using System.Windows;
 // You can specify all the values or you can default the Build and Revision Numbers 
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("0.1.0.6")]
-[assembly: AssemblyFileVersion("0.1.0.6")]
+[assembly: AssemblyVersion("0.1.0.7")]
+[assembly: AssemblyFileVersion("0.1.0.7")]
+
+
+// To Update the Installer
+/*
+1.) Update the two numbers above
+2.) In the installer project:
+
+Change:
+Product Version
+Product Code
+
+ ********* DO NOT CHANGE Upgrade Code ***********
+
+
+InstallshieldProject -> 1 Organize your Setup -> Upgrade Paths
+
+add at least one Item:
+
+Set Values: - minversion 0.0.0 - maxversion currentversion - Upgrade Code (from General Information)
+
+3.) Update the Proxy layer to reflect the latest version.
+ */

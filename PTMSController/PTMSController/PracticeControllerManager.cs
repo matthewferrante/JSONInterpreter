@@ -3,6 +3,8 @@ using System.Configuration;
 using System.IO;
 using System.Windows;
 using PTMS.Core;
+using PTMS.Core.Api;
+using PTMS.Core.Configuration;
 using PTMS.Core.Logging;
 using PTMS.Core.Utilities;
 
@@ -12,8 +14,11 @@ namespace PTMSController {
         public String OutgoingDirectory { get; private set; }
         public String ProcessedDirectory { get; private set; }
         public String DeletedDirectory { get; private set; }
+        public ApiCredentials ApiCredentials { get; private set; }
+        public Logger Logger { get { return _logger; } }
 
         private readonly Logger _logger;
+
 
         public PracticeControllerManager(Logger logger) {
             VerifyAndLoadConfiguration();
@@ -49,6 +54,8 @@ namespace PTMSController {
                 OutgoingDirectory = FileSystem.BuildAbsolutePath(ConfigurationManager.AppSettings[Constants.SETTING_OUTGOING_DIRECTORY]);
                 ProcessedDirectory = FileSystem.BuildAbsolutePath(ConfigurationManager.AppSettings[Constants.SETTING_PROCESSED_DIRECTORY]);
                 DeletedDirectory = FileSystem.BuildAbsolutePath(ConfigurationManager.AppSettings[Constants.SETTING_DELETED_DIRECTORY]);
+
+                ApiCredentials = Utilities.GetCredentials();
             } catch (Exception ex) {
                 throw new ConfigurationErrorsException(String.Format("There is an error in the configuration file.  Please check the file and try again.\nReason: {0}", ex));
             }

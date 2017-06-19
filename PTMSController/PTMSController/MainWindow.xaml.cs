@@ -124,7 +124,7 @@ namespace PTMSController {
                     // Initial load of the window.  Put the last 10 lines of text in the box for users to view.
                     RTBLogWindow.AppendText(String.Join("\n", File.ReadLines(logFile).Reverse().Take(10).Reverse()) + "\n");
                 } catch {
-                    _logger.Log(String.Format("Can't find the log file.  The log file will be recreated at {0}.", logFile));
+                    Manager.Logger.Log(String.Format("Can't find the log file.  The log file will be recreated at {0}.", logFile));
                     File.Create(logFile);
                 }
 
@@ -161,7 +161,7 @@ namespace PTMSController {
             var sc = GetService();
 
             if (sc == null) {
-                _logger.LogException("SERVICE CONTROL", "Unable to get Service.");
+                Manager.Logger.LogException("SERVICE CONTROL", "Unable to get Service.");
             }
 
             BtnServiceControl.IsEnabled = false;
@@ -180,36 +180,40 @@ namespace PTMSController {
         }
         private void btnSendAll_Click(object sender, RoutedEventArgs e) {
             var result = MessageBox.Show("Are you sure you want to send all charts?", "Confirm Send All", MessageBoxButton.YesNo);
+            Manager.Logger.Log("Send All Charts Initiated.");
 
-            _logger.Log("Send All Charts Initiated.");
 
-            if (result == MessageBoxResult.Yes) {
-                var creds = Utilities.GetCredentials();
-                var key = PracticeConnector.GetEncryptionKey(creds.ApiUri, creds.AuthToken);
+            try {
 
-                foreach (var row in _reviewRows) {
-                    var newPath = Path.Combine(Manager.ProcessedDirectory, Path.GetFileName(row.FileName));
+                if (result == MessageBoxResult.Yes) {
+                    var key = PracticeConnector.GetEncryptionKey(Manager.ApiCredentials.ApiUri, Manager.ApiCredentials.AuthToken);
 
-                    if (File.Exists(newPath)) {
-                        File.Delete(newPath);
-                    }
+                    foreach (var row in _reviewRows) {
+                        var newPath = Path.Combine(Manager.ProcessedDirectory, Path.GetFileName(row.FileName));
 
-                    var text = File.ReadAllText(row.FileName);
+                        if (File.Exists(newPath)) {
+                            File.Delete(newPath);
+                        }
 
-                    try {
-                        File.WriteAllText(newPath, StringCipher.Decrypt(text, key));
-                        File.Delete(row.FileName);
-                    } catch (Exception ex) {
-                        _logger.LogException("Send All:Write File", ex.ToString());
+                        var text = File.ReadAllText(row.FileName);
+
+                        try {
+                            File.WriteAllText(newPath, StringCipher.Decrypt(text, key));
+                            File.Delete(row.FileName);
+                        } catch (Exception ex) {
+                            Manager.Logger.LogException("Send All:Write File", ex.ToString());
+                        }
                     }
                 }
+            } catch (Exception ex) {
+              Manager.Logger.LogException("Error Sending All Charts",ex.ToString());  
             }
         }
         private void btnGetFiles_Click(object sender, RoutedEventArgs e) {
             var result = MessageBox.Show("Are you sure you want to download charts now?", "Confirm Download", MessageBoxButton.YesNo);
 
             if (result == MessageBoxResult.Yes) {
-                _logger.Log("Dashboard Downloading Files");
+                Manager.Logger.Log("Dashboard Downloading Files");
 
                 try {
                     var key = PracticeConnector.GetEncryptionKey(Manager.ApiCredentials.ApiUri, Manager.ApiCredentials.AuthToken);
@@ -217,10 +221,10 @@ namespace PTMSController {
                     PracticeConnector.DownloadReports(Manager.ApiCredentials, _logger, Manager.IncomingDirectory, key);
 
                     MessageBox.Show("Files successfully downloaded.", "Success", MessageBoxButton.OK);
-                    _logger.Log("Successfully downloaded reports. [Manual]");
+                    Manager.Logger.Log("Successfully downloaded reports. [Manual]");
                 } catch {
                     MessageBox.Show("The host server is currently unavailable.  Please try again in a few minutes.", "Server Error", MessageBoxButton.OK);
-                    _logger.Log("Unable to download reports due to server failure. [Manual]");
+                    Manager.Logger.Log("Unable to download reports due to server failure. [Manual]");
                 }
             }
         }
@@ -300,7 +304,6 @@ namespace PTMSController {
             try {
                 App.Current.Dispatcher.Invoke(delegate { _reviewRows.Clear(); });
 
-                //var creds = Utilities.GetCredentials();
                 var key = PracticeConnector.GetEncryptionKey(Manager.ApiCredentials.ApiUri, Manager.ApiCredentials.AuthToken);
 
                 foreach (string file in Directory.EnumerateFiles(Manager.IncomingDirectory, "*.json")) {
@@ -311,11 +314,11 @@ namespace PTMSController {
 
                         App.Current.Dispatcher.Invoke(delegate { _reviewRows.Add(new ReviewRow() { Id = r.Patient.PatientId, FirstName = r.Patient.FirstName, LastName = r.Patient.LastName, DOB = dob, Gender = r.Patient.Gender, FileName = file }); });  // Add Row to current display               
                     } catch (Exception ex) {
-                        _logger.LogException(String.Format("Processing Incoming: {0}", file), ex.ToString());
+                        Manager.Logger.LogException(String.Format("Processing Incoming: {0}", file), ex.ToString());
                     }
                 }
             } catch (Exception exception) {
-                _logger.LogException("Exception Processing Incoming", exception.ToString());
+                Manager.Logger.LogException("Exception Processing Incoming", exception.ToString());
             }
         }
         private void ProcessIncoming(object sender, FileSystemEventArgs e) {
@@ -334,8 +337,6 @@ namespace PTMSController {
             updateWindow.ShowDialog();
         }
         private void DeleteIncoming(object sender, RoutedEventArgs e) {
-            //var creds = Utilities.GetCredentials();
-
             try {
                 var reviewRow = (sender as Button).DataContext as ReviewRow;
                 var fn = Path.GetFileName(reviewRow.FileName);
@@ -343,7 +344,7 @@ namespace PTMSController {
                 Manager.DeleteIncomingQuestionnaire(fn);
             } catch (NullReferenceException nre) {
                 MessageBox.Show(String.Format("And Error occurred removing report.  Error: {0}", nre.Message));
-                _logger.LogException("Delete Incoming", nre.ToString());
+                Manager.Logger.LogException("Delete Incoming", nre.ToString());
             }
         }
 
@@ -353,9 +354,9 @@ namespace PTMSController {
 
 
         private void Test_Click(object sender, EventArgs e) {
-            var creds = Utilities.GetCredentials();
+            //var creds = Utilities.GetCredentials();
 
-            var password = PracticeConnector.GetEncryptionKey(creds.ApiUri, creds.AuthToken);
+            var password = PracticeConnector.GetEncryptionKey(Manager.ApiCredentials.ApiUri, Manager.ApiCredentials.AuthToken);
             //var input = File.ReadAllText(_reviewRows[0].FileName);
 
             var input = "This is a test string";

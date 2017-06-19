@@ -77,11 +77,20 @@
             </DataGrid.Columns>
         </DataGrid>
         <Separator Grid.Row="1" VerticalAlignment="Bottom"/>
-        <Button Content="Cancel" HorizontalAlignment="Center" Grid.Row="2" VerticalAlignment="Center" Width="117" RenderTransformOrigin="0.253,0.3" Click="Cancel_Click" Margin="493,38,472,26" Height="20"/>
-        <Label Content="Total Findings:" Margin="0,12,152,46" Grid.Row="2" HorizontalAlignment="Right" Width="86"/>
-        <Label Content="Findings going to Chart:" Margin="0,35,152,23" Grid.Row="2" HorizontalAlignment="Right" Width="136"/>
-        <TextBox Margin="0,12,80,49" Width="50" TextWrapping="NoWrap" x:Name="tbTotalFindings" IsEnabled="False"  Grid.Row="2" RenderTransformOrigin="0.375,-0.783" HorizontalAlignment="Right"/>
-        <TextBox Margin="0,38,80,23" Width="50" TextWrapping="NoWrap" x:Name="tbSavedFindings" IsEnabled="False"  Grid.Row="2" RenderTransformOrigin="0.375,-0.783" HorizontalAlignment="Right"/>
-        <Button Content="Send to Chart" HorizontalAlignment="Center" Grid.Row="2" VerticalAlignment="Center" Width="117" RenderTransformOrigin="0.253,0.3" Click="Save_Click" Margin="355,38,610,26" Height="20"/>
+        <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Row="2" >
+            <Button Content="Cancel" HorizontalAlignment="Center" VerticalAlignment="Center" Width="117" RenderTransformOrigin="0.253,0.3" Click="Cancel_Click" Height="20" Margin="0,0,10,0"/>
+            <Button Content="Send to Chart" HorizontalAlignment="Center" VerticalAlignment="Center" Width="117" RenderTransformOrigin="0.253,0.3" Click="Save_Click" Height="20" Margin="10,0,0,0"/>
+        </StackPanel>
+        <StackPanel VerticalAlignment="Center" HorizontalAlignment="Right" Orientation="Vertical" Grid.Row="2">
+            <StackPanel VerticalAlignment="Center" HorizontalAlignment="Right" Orientation="Horizontal">
+                <Label Content="Total Findings:" HorizontalAlignment="Right" Width="86"/>
+                <TextBox Width="50" TextWrapping="NoWrap" x:Name="tbTotalFindings" IsEnabled="False" RenderTransformOrigin="0.375,-0.783" HorizontalAlignment="Right"/>
+            </StackPanel>
+            <StackPanel VerticalAlignment="Center" HorizontalAlignment="Right" Orientation="Horizontal">
+                <Label Content="Findings going to Chart:" HorizontalAlignment="Right" Width="136"/>
+                <TextBox Width="50" TextWrapping="NoWrap" x:Name="tbSavedFindings" IsEnabled="False" RenderTransformOrigin="0.375,-0.783" HorizontalAlignment="Right"/>
+            </StackPanel>
+        </StackPanel>
+
     </Grid>
 </Window>

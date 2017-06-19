@@ -17,24 +17,30 @@ namespace PTMSController {
     public partial class UpdateWindow : Window {
         protected Version ServerVersion;
         protected Version Version;
-        private dynamic _creds;
         private dynamic _manifest;
 
+        private readonly PracticeControllerManager pcm;
 
         public UpdateWindow() {
             InitializeComponent();
 
-            _creds = Utilities.GetCredentials();
-            ServerVersion = new Version(DashboardConnector.GetVersion(_creds.ApiUri, _creds.AuthToken).Version);
-            Version = Assembly.GetExecutingAssembly().GetName().Version;
-            _manifest = DashboardConnector.GetUpdateManifest(_creds.ApiUri, ServerVersion.ToString(), _creds.AuthToken);
+            pcm = PracticeControllerManager.Current;
 
-            lblVersion.Content = Version;
+            try {
+                ServerVersion = new Version(DashboardConnector.GetVersion(pcm.ApiCredentials.ApiUri, pcm.ApiCredentials.AuthToken).Version);
+                Version = Assembly.GetExecutingAssembly().GetName().Version;
+                _manifest = DashboardConnector.GetUpdateManifest(pcm.ApiCredentials.ApiUri, ServerVersion.ToString(), pcm.ApiCredentials.AuthToken);
 
-            if (ServerVersion.CompareTo(Version) > 0) {
-                lblServerVersion.Content = String.Format("The lastest verision is {0}", ServerVersion);
-                btnUpdate.Visibility = Visibility.Visible;
+                lblVersion.Content = Version;
+
+                if (ServerVersion.CompareTo(Version) > 0) {
+                    lblServerVersion.Content = String.Format("The lastest verision is {0}", ServerVersion);
+                    btnUpdate.Visibility = Visibility.Visible;
+                }                
+            } catch (Exception ex) {
+                pcm.Logger.LogException("Error Loading Update Window", ex.ToString());
             }
+
         }
 
         private void Update_Click(object sender, RoutedEventArgs e) {
@@ -42,9 +48,10 @@ namespace PTMSController {
                 // Do update
                 ProgressBar.Visibility = Visibility.Visible;
 
-                Check(_creds.ApiUri, _manifest);
+                Check(pcm.ApiCredentials.ApiUri, _manifest);
             } catch (Exception ex) {
                 MessageBox.Show("Unable to check for updates.  Please try again shortly.", "Update", MessageBoxButton.OK);
+                pcm.Logger.LogException("Error Checking Updates", ex.ToString());
             }
         }
 
@@ -74,12 +81,10 @@ namespace PTMSController {
                 btnUpdate.Content = "Completed";
             });
 
-            var packageUri = new Uri(_creds.ApiUri, _manifest.PackageUrl);
+            var packageUri = new Uri(pcm.ApiCredentials.ApiUri, _manifest.PackageUrl);
             var updateDir = FileSystem.BuildAssemblyRelPath("Update");
             var filePath = Path.Combine(updateDir, packageUri.Segments.Last());
-
             var checksum = _manifest.CheckSum;
-
             string md5sum = FileSystem.MD5Sum(filePath);
 
             if (!md5sum.Equals(checksum, StringComparison.CurrentCultureIgnoreCase)) {
