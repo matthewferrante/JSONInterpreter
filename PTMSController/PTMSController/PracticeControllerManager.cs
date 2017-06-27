@@ -23,10 +23,14 @@ namespace PTMSController {
         public PracticeControllerManager(Logger logger) {
             VerifyAndLoadConfiguration();
 
-            FileSystem.AssertDirectoryExists(IncomingDirectory);
-            FileSystem.AssertDirectoryExists(OutgoingDirectory);
-            FileSystem.AssertDirectoryExists(ProcessedDirectory);
-            FileSystem.AssertDirectoryExists(DeletedDirectory);
+            try {
+                FileSystem.AssertDirectoryExists(IncomingDirectory);
+                FileSystem.AssertDirectoryExists(OutgoingDirectory);
+                FileSystem.AssertDirectoryExists(ProcessedDirectory);
+                FileSystem.AssertDirectoryExists(DeletedDirectory);
+            } catch (Exception ex) {
+                throw new Exception("Error creating directories for controller.  PCM main constructor.");
+            }
 
             _logger = logger;
         }

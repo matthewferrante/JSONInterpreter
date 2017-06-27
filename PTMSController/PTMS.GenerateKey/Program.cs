@@ -11,7 +11,7 @@ namespace PTMS.GenerateKey {
             //testuser@test.com:testingPassword123!
             //AM/9g+c39HnUT8Ioe3D4Y0uOLzDQdmWBb3raXpFHm8VYk/ZNt3rW+qXLFaiV+1WoWw==
 
-            var hash = HashPassword("sbxdffzb9h3K=P4p%kDr");
+            var hash = HashPassword("9zjhUerW0psdsPonndwZ");
 
             Console.WriteLine("Hash => {0}", hash);
 
