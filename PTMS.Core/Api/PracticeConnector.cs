@@ -75,20 +75,32 @@ namespace PTMS.Core.Api {
 
                 var s = GetReport(creds.ApiUri, reportId, creds.AuthToken);
                 var reportdata = JObject.Parse(s.ReportInbox.ReportInfo.ReportData);
+                var outputPath = Path.Combine(writeDirectory, reportId);
 
                 string json = JsonConvert.SerializeObject(reportdata);
-                File.WriteAllText( Path.Combine(writeDirectory,reportId), StringCipher.Encrypt(json, passPhrase));
+                File.WriteAllText(outputPath, StringCipher.Encrypt(json, passPhrase));
 
-                log.Log(String.Format("Downloaded Report {0}", reportId));
-                log.Log(String.Format("Removing Report from API: {0}", reportId));
+                if (VerifyDownload(outputPath)) {
+                    log.Log(String.Format("Downloaded Report {0}", reportId));
+                    log.Log(String.Format("Removing Report from API: {0}", reportId));
 
-                try {
-                    DeleteReport(creds.ApiUri, reportId, creds.AuthToken);
-                } catch (Exception ex) {
-                    log.LogException(String.Format("Could not Delete Report: {0}", reportId), ex.ToString());
+                    try {
+                        DeleteReport(creds.ApiUri, reportId, creds.AuthToken);
+                    } catch (Exception ex) {
+                        log.LogException(String.Format("Could not Delete Report: {0}", reportId), ex.ToString());
+                    }                    
+                } else {
+                    log.Log(String.Format("Error in download, could not verify file was written. Output path = {0}",outputPath));
                 }
+
             }
         }
+
+        private static bool VerifyDownload(string path) {
+            return File.Exists(path);
+        }
+
+
 
         private static string GetPractice(Uri apiEndPoint, string auth) {
             return ApiConnector.GetResource(apiEndPoint, "Practice", AUTH_TYPE, auth);

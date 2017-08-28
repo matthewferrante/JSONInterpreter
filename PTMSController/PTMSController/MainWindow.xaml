@@ -17,9 +17,9 @@
                 <MenuItem Header="_Dashboard" Click="ShowDashboard" IsCheckable="False"></MenuItem>
                 <MenuItem Header="_Log" Click="ShowLog" IsCheckable="False"></MenuItem>
             </MenuItem>
-            <MenuItem Header="_Advanced" VerticalAlignment="Bottom">
+            <!--<MenuItem Header="_Advanced" VerticalAlignment="Bottom">
                 <MenuItem Header="_Uninstall Service" Click="UninstallClick"></MenuItem>
-            </MenuItem>
+            </MenuItem>-->
             <MenuItem Header="_Help" VerticalAlignment="Bottom">
                 <MenuItem Header="_About" Click="ShowAbout" IsCheckable="False"></MenuItem>
                 <MenuItem Header="_Check for Updates..." Click="CheckUpdates" IsCheckable="False"></MenuItem>

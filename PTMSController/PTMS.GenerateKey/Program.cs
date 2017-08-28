@@ -11,7 +11,7 @@ namespace PTMS.GenerateKey {
             //testuser@test.com:testingPassword123!
             //AM/9g+c39HnUT8Ioe3D4Y0uOLzDQdmWBb3raXpFHm8VYk/ZNt3rW+qXLFaiV+1WoWw==
 
-            var hash = HashPassword("9zjhUerW0psdsPonndwZ");
+            var hash = HashPassword("ogo0JJZcwVUoT1xEfdva");
 
             Console.WriteLine("Hash => {0}", hash);
 
@@ -31,12 +31,9 @@ namespace PTMS.GenerateKey {
             // Create an instance of Symetric Algorithm. Key and IV is generated automatically.
             DESCryptoServiceProvider desCrypto = (DESCryptoServiceProvider)DESCryptoServiceProvider.Create();
 
-
-
             // Use the Automatically generated key for Encryption. 
             return ASCIIEncoding.UTF7.GetString(desCrypto.Key);
         }
-
 
         public static string HashPassword(string password) {
             byte[] salt;
@@ -60,23 +57,30 @@ namespace PTMS.GenerateKey {
 
         public static bool VerifyHashedPassword(string hashedPassword, string password) {
             byte[] buffer4;
+
             if (hashedPassword == null) {
                 return false;
             }
+
             if (password == null) {
                 throw new ArgumentNullException("password");
             }
+
             byte[] src = Convert.FromBase64String(hashedPassword);
+            
             if ((src.Length != 0x31) || (src[0] != 0)) {
                 return false;
             }
+
             byte[] dst = new byte[0x10];
             Buffer.BlockCopy(src, 1, dst, 0, 0x10);
             byte[] buffer3 = new byte[0x20];
             Buffer.BlockCopy(src, 0x11, buffer3, 0, 0x20);
+            
             using (Rfc2898DeriveBytes bytes = new Rfc2898DeriveBytes(password, dst, 0x3e8)) {
                 buffer4 = bytes.GetBytes(0x20);
             }
+
             return ByteArraysEqual(buffer3, buffer4);
         }
 
