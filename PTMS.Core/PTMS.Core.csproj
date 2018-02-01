@@ -86,6 +86,7 @@
     <Compile Include="Utilities\Auth.cs" />
     <Compile Include="Utilities\Fetch.cs" />
     <Compile Include="Utilities\FileSystem.cs" />
+    <Compile Include="Utilities\Report.cs" />
     <Compile Include="Utilities\Updater.cs" />
   </ItemGroup>
   <ItemGroup>

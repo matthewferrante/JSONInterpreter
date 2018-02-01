@@ -182,7 +182,6 @@ namespace PTMSController {
             var result = MessageBox.Show("Are you sure you want to send all charts?", "Confirm Send All", MessageBoxButton.YesNo);
             Manager.Logger.Log("Send All Charts Initiated.");
 
-
             try {
 
                 if (result == MessageBoxResult.Yes) {
@@ -218,7 +217,7 @@ namespace PTMSController {
                 try {
                     var key = PracticeConnector.GetEncryptionKey(Manager.ApiCredentials.ApiUri, Manager.ApiCredentials.AuthToken);
 
-                    PracticeConnector.DownloadReports(Manager.ApiCredentials, _logger, Manager.IncomingDirectory, key);
+                    PracticeConnector.DownloadReports(Manager.ApiCredentials, _logger, Manager.IncomingDirectory, Manager.ProcessedDirectory, key);
 
                     MessageBox.Show("Files successfully downloaded.", "Success", MessageBoxButton.OK);
                     Manager.Logger.Log("Successfully downloaded reports. [Manual]");

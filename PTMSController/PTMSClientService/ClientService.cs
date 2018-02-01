@@ -17,6 +17,7 @@ namespace PTMSClientService {
         private Logger _logger;
         private string _incomingDir;
         private string _outgoingDir;
+        private string _processedDir;
         private string _uploadDir;
 
 
@@ -30,12 +31,13 @@ namespace PTMSClientService {
         protected override void OnStart(string[] args) {
             _logger.Log("Service Started");
 
-            _incomingDir = FileSystem.BuildAbsolutePath(ConfigurationManager.AppSettings[Constants.SETTING_INCOMING_DIRECTORY]);
-            _outgoingDir = FileSystem.BuildAbsolutePath(ConfigurationManager.AppSettings[Constants.SETTING_OUTGOING_DIRECTORY]);
-            //_practiceId = ConfigurationManager.AppSettings[Constants.SETTING_PRACTICE_ID];
+            _incomingDir = FileSystem.BuildAbsolutePath(Utilities.GetSetting(Constants.SETTING_INCOMING_DIRECTORY));
+            _outgoingDir = FileSystem.BuildAbsolutePath(Utilities.GetSetting(Constants.SETTING_OUTGOING_DIRECTORY));
+            _processedDir = FileSystem.BuildAbsolutePath(Utilities.GetSetting(Constants.SETTING_PROCESSED_DIRECTORY));
 
             FileSystem.AssertDirectoryExists(_outgoingDir);
             FileSystem.AssertDirectoryExists(_incomingDir);
+            FileSystem.AssertDirectoryExists(_processedDir);
 
             ScheduleServices();
         }
@@ -97,7 +99,7 @@ namespace PTMSClientService {
             try {
                 var key = PracticeConnector.GetEncryptionKey(creds.ApiUri, creds.AuthToken);
 
-                PracticeConnector.DownloadReports(creds, _logger, _incomingDir, key);
+                PracticeConnector.DownloadReports(creds, _logger, _incomingDir, _processedDir, key);
             } catch (Exception ex) {
                 _logger.LogException("Report Callback", ex.ToString());
             }

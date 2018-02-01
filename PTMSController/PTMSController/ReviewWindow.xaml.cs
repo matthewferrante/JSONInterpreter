@@ -39,7 +39,7 @@ namespace PTMSController {
         public ReviewWindow(ReviewRow rr) {
 
             InitializeComponent();
-            _processedDir = FileSystem.BuildAbsolutePath(ConfigurationManager.AppSettings[Constants.SETTING_PROCESSED_DIRECTORY]);
+            _processedDir = FileSystem.BuildAbsolutePath(Utilities.GetSetting(Constants.SETTING_PROCESSED_DIRECTORY));
             _fileName = rr.FileName;
 
             var creds = Utilities.GetCredentials();

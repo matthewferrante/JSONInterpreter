@@ -11,6 +11,7 @@ using Newtonsoft.Json.Linq;
 using PTMS.Core.Api;
 using PTMS.Core.Crypto;
 using PTMS.Core.Logging;
+using PTMS.Core.Utilities;
 
 namespace PTMS.Core.Api {
     public static class PracticeConnector {
@@ -63,10 +64,11 @@ namespace PTMS.Core.Api {
         /// Downlaod reports to the local disk
         /// </summary>
         /// <param name="creds">Api Credentials to connect to the API</param>
-        /// <param name="practiceId">The practiceId to download reports from</param>
         /// <param name="log">Logger to log the action</param>
-        /// <param name="writeDirectory">Where to write the logs once downloaded</param>
-        public static void DownloadReports(ApiCredentials creds, Logger log, string writeDirectory, string passPhrase) {
+        /// <param name="writeDirectory">Where to write the reports once downloaded</param>
+        /// <param name="processedDirectory">Where to write the report if it has the flag to be auto-processed once downloaded</param>
+        /// <param name="passPhrase">Encryption key to be used</param>
+        public static void DownloadReports(ApiCredentials creds, Logger log, string writeDirectory, string processedDirectory, string passPhrase) {
             log.Log("**** Downloading Reports ******");
             var reports = GetAvailableReports(creds.ApiUri, creds.AuthToken);
 
@@ -76,23 +78,22 @@ namespace PTMS.Core.Api {
                 var s = GetReport(creds.ApiUri, reportId, creds.AuthToken);
                 var reportdata = JObject.Parse(s.ReportInbox.ReportInfo.ReportData);
                 var outputPath = Path.Combine(writeDirectory, reportId);
-
+                var autoPath = Path.Combine(processedDirectory, reportId);
                 string json = JsonConvert.SerializeObject(reportdata);
-                File.WriteAllText(outputPath, StringCipher.Encrypt(json, passPhrase));
 
-                if (VerifyDownload(outputPath)) {
-                    log.Log(String.Format("Downloaded Report {0}", reportId));
-                    log.Log(String.Format("Removing Report from API: {0}", reportId));
+                try {
+                    if (Report.IsAutoProcess(reportdata)) {  
+                        File.WriteAllText(autoPath, json);
 
-                    try {
-                        DeleteReport(creds.ApiUri, reportId, creds.AuthToken);
-                    } catch (Exception ex) {
-                        log.LogException(String.Format("Could not Delete Report: {0}", reportId), ex.ToString());
-                    }                    
-                } else {
-                    log.Log(String.Format("Error in download, could not verify file was written. Output path = {0}",outputPath));
+                        VerifyAndDelete(autoPath, log, creds, reportId);
+                    } else {
+                        File.WriteAllText(outputPath, StringCipher.Encrypt(json, passPhrase));
+
+                        VerifyAndDelete(outputPath, log, creds, reportId);
+                    }
+                } catch (Exception ex) {
+                    log.LogException(String.Format("Could not Read Report for Auto Processing: {0}", reportId), ex.ToString());
                 }
-
             }
         }
 
@@ -100,7 +101,20 @@ namespace PTMS.Core.Api {
             return File.Exists(path);
         }
 
+        private static void VerifyAndDelete(string path, Logger log, ApiCredentials creds, string reportId) {
+            if (VerifyDownload(path)) {
+                log.Log(String.Format("Downloaded Report {0}", reportId));
 
+                try {
+                    log.Log(String.Format("Removing Report from API: {0}", reportId));
+                    DeleteReport(creds.ApiUri, reportId, creds.AuthToken);
+                } catch (Exception ex) {
+                    log.LogException(String.Format("Could not Delete Report: {0}", reportId), ex.ToString());
+                }
+            } else {
+                log.Log(String.Format("Error in download, could not verify file was written. Output path = {0}", path));
+            }                        
+        }
 
         private static string GetPractice(Uri apiEndPoint, string auth) {
             return ApiConnector.GetResource(apiEndPoint, "Practice", AUTH_TYPE, auth);

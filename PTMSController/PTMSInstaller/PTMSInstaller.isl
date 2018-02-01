@@ -4368,9 +4368,9 @@ UwBpAG4AZwBsAGUASQBtAGEAZwBlAAEARQB4AHAAcgBlAHMAcwA=
 		<row><td>PROGMSG_IIS_ROLLBACKAPPPOOLS</td><td>##IDS_PROGMSG_IIS_ROLLBACKAPPPOOLS##</td><td/></row>
 		<row><td>PROGMSG_IIS_ROLLBACKVROOTS</td><td>##IDS_PROGMSG_IIS_ROLLBACKVROOTS##</td><td/></row>
 		<row><td>PROGMSG_IIS_ROLLBACKWEBSERVICEEXTENSIONS</td><td>##IDS_PROGMSG_IIS_ROLLBACKWEBSERVICEEXTENSIONS##</td><td/></row>
-		<row><td>ProductCode</td><td>{E57EF2CB-E5F6-4C07-99C3-10B155149FC0}</td><td/></row>
+		<row><td>ProductCode</td><td>{210E2F79-50A8-4B93-BCEB-28E526380DFC}</td><td/></row>
 		<row><td>ProductName</td><td>PTMS Service Dashboard</td><td/></row>
-		<row><td>ProductVersion</td><td>0.1.0.7</td><td/></row>
+		<row><td>ProductVersion</td><td>0.1.0.8</td><td/></row>
 		<row><td>ProgressType0</td><td>install</td><td/></row>
 		<row><td>ProgressType1</td><td>Installing</td><td/></row>
 		<row><td>ProgressType2</td><td>installed</td><td/></row>
