@@ -15,7 +15,7 @@ namespace PTMS.GenerateKey {
             //testuser@test.com:testingPassword123!
             //AM/9g+c39HnUT8Ioe3D4Y0uOLzDQdmWBb3raXpFHm8VYk/ZNt3rW+qXLFaiV+1WoWw==
 
-            var hash = HashPassword("Vt3zjmcTVa32n7yMAA4M");
+            var hash = HashPassword("8GtiTDMwHY4QNzLQR4dx");
 
             Console.WriteLine("Hash => {0}", hash);
 
@@ -29,16 +29,16 @@ namespace PTMS.GenerateKey {
             Console.WriteLine("Key 2 => {0}", d);
             Console.WriteLine("Password Hash => {0}",hash);
   
-            string keyName = (string)null;
-            byte[] bytes = (byte[])null;
+            //string keyName = (string)null;
+            //byte[] bytes = (byte[])null;
   
-            //new SecurityIdentifier("S-1-5-32-568");
-            var val = GetAppSetting("NobleHostConnStr", (string)null);
-            if (IsEncrypted(val, out keyName, out bytes)) {
-                val = DecryptBytesAES(bytes, keyName, new SecurityIdentifier("S-1-5-32-568"));
-                //this._EncryptedMembers[name] = EncryptedConfigCtrl.SettingState.Encrypted;
-            }
-            Console.WriteLine("ConnStr = {0}", val);
+            ////new SecurityIdentifier("S-1-5-32-568");
+            //var val = GetAppSetting("", (string)null);
+            //if (IsEncrypted(val, out keyName, out bytes)) {
+            //    val = DecryptBytesAES(bytes, keyName, new SecurityIdentifier("S-1-5-32-568"));
+            //    //this._EncryptedMembers[name] = EncryptedConfigCtrl.SettingState.Encrypted;
+            //}
+            //Console.WriteLine("ConnStr = {0}", val);
         }
 
         public static string GetAppSetting(string name, string defaultValue) {
